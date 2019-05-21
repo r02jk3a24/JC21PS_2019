@@ -19,7 +19,7 @@ import jp.co.jcps.Bean.MessageBean;
 import jp.co.jcps.Common.Validation;
 
 /**
- * 学生ログイン画面のコントローラ
+ * ログイン画面のコントローラ
  */
 @WebServlet("/Login")
 public class LoginControllerServlet extends HttpServlet {
@@ -43,7 +43,6 @@ public class LoginControllerServlet extends HttpServlet {
 
 	/**
 	 * POSTメソッドでリクエストされた場合の処理
-	 * 動的SQL生成のテスト
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// パラメータを初期化
