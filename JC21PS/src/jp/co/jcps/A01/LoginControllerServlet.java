@@ -26,7 +26,7 @@ public class LoginControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * コンストラクタ
+	 * コンストラクタsdsd
 	 */
 	public LoginControllerServlet() {
 		super();
