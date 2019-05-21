@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>部活動管理システム</title>
+<title>出席登録システム</title>
 </head>
 <body>
 <%
@@ -16,7 +16,7 @@
 	}
 %>
 <div class="login">
-  <h2 class="student-header">部活動管理システム</h2>
+  <h2 class="student-header">出席登録システム</h2>
   <form class="login-container" action="/JC21PS/Student" method="post">
     <p><input type="text" placeholder="ログイン名" name="loginNm"></p>
     <p><input type="password" placeholder="パスワード" name="password"></p>
