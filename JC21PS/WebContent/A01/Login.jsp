@@ -17,8 +17,8 @@
 %>
 <div class="login">
   <h2 class="student-header">部活動管理システム</h2>
-  <form class="login-container" action="/JC21PS/Student" method="post">
-    <p><input type="text" placeholder="ログイン名" name="loginNm"></p>
+  <form class="login-container" action="/JC21PS/Login" method="post">
+    <p><input type="text" placeholder="ログイン名" name="loginName"></p>
     <p><input type="password" placeholder="パスワード" name="password"></p>
     <p><input type="submit" value="Log in" style="background: #ff7f50"></p>
   </form>

@@ -46,18 +46,18 @@ public class LoginControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// パラメータを初期化
-		String loginNm = request.getParameter("loginNm");
+		String loginName = request.getParameter("loginName");
 		String password = request.getParameter("password");
 
 		// messageBeanを初期化
 		MessageBean messageBean = new MessageBean();
 
 		// チェック処理
-		Validation.checkAlphaNumeric(loginNm, "ログイン名", messageBean);
+		Validation.checkAlphaNumeric(loginName, "ログイン名", messageBean);
 		Validation.checkAlphaNumeric(password, "パスワード", messageBean);
-		Validation.checkLegalLengthString(loginNm, 30, "ログイン名", messageBean);
+		Validation.checkLegalLengthString(loginName, 30, "ログイン名", messageBean);
 		Validation.checkLegalLengthString(password, 30, "パスワード", messageBean);
-		Validation.checkRequired(loginNm, "ログイン名", messageBean);
+		Validation.checkRequired(loginName, "ログイン名", messageBean);
 		Validation.checkRequired(password, "パスワード", messageBean);
 
 		if(messageBean.getMessageList().size() != 0) {
@@ -80,7 +80,7 @@ public class LoginControllerServlet extends HttpServlet {
 			con = ds.getConnection();
 
 			// SQLの実行
-			String sql = "SELECT student_id FROM mst_student WHERE login_nm = '" +  loginNm + "'AND password = '" + password + "'";
+			String sql = "SELECT user_id FROM mst_user WHERE login_nm = '" +  loginName + "'AND password = '" + password + "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -103,7 +103,7 @@ public class LoginControllerServlet extends HttpServlet {
 				session.setAttribute("studentId", rs.getString("student_id"));
 
 				// ログイン成功の場合は履修講義一覧画面に遷移する
-				request.getRequestDispatcher("/RegisteredLectureListControllerServlet").forward(request, response);
+				request.getRequestDispatcher("/TopControllerServlet").forward(request, response);
 			}
 
 		} catch (Exception e) {
