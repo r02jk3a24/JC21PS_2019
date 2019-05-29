@@ -80,7 +80,7 @@ public class LoginControllerServlet extends HttpServlet {
 			con = ds.getConnection();
 
 			// SQLの実行
-			String sql = "SELECT user_id FROM mst_user WHERE login_nm = '" +  loginName + "'AND password = '" + password + "'";
+			String sql = "SELECT user_id FROM mst_user WHERE login_name = '" +  loginName + "'AND password = '" + password + "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -96,11 +96,11 @@ public class LoginControllerServlet extends HttpServlet {
 			}
 
 			// Viewへ引き渡す値を設定
-			if(rs.getString("student_id") != null) {
+			if(rs.getString("user_id") != null) {
 				// セッションを開始
 				HttpSession session = request.getSession(true);
 				// ログイン情報をセッションに保持
-				session.setAttribute("studentId", rs.getString("student_id"));
+				session.setAttribute("user_id", rs.getString("user_id"));
 
 				// ログイン成功の場合は履修講義一覧画面に遷移する
 				request.getRequestDispatcher("/TopControllerServlet").forward(request, response);

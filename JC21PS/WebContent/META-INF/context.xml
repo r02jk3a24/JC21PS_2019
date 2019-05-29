@@ -2,11 +2,11 @@
 <!DOCTYPE configuration>
 <Context>
   <Resource
-      name="jdbc/jc21ps_2019"
+      name="jdbc/jc21ps"
       auth="Container"
       type="javax.sql.DataSource"
       driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://localhost:3306/jc21ps_dev?serverTimezone=JST"
+      url="jdbc:mysql://localhost:3306/jc21ps_2019?serverTimezone=JST"
       connectionProperties="autoReconnect=true;verifyServerCertificate=false;useSSL=false;requireSSL=false"
       username="root"
       password="jc21ps"
