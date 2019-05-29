@@ -3,28 +3,31 @@ package jp.co.jcps.Bean;
 import java.io.Serializable;
 
 /**
- * 出席登録のBean
+ * Top画面のBean
  *
  */
-public class GenerateAttendanceCdBean implements Serializable {
+public class TrnActivityBean implements Serializable {
 
-	// 講義スケジュールID
-	private String lectureScheduleId;
+	// 活動ID
+	private String activityId;
 
-	// 講義名
-	private String lectureNm;
+	// 部活ID
+	private String clubId;
 
-	// 次回講義日
-	private String  kaisaiDate;
+	// 活動名
+	private String ActivityName;
 
-	// 出席コード
-	private String attendanceCd;
+	// 活動場所
+	private String ActivityPlace;
+	
+	// 活動時間（自）
+	private 
 
 	/**
 	 * コンストラクタ
 	 *
 	 */
-	public GenerateAttendanceCdBean() {
+	public TrnActivityBean() {
 		this.lectureScheduleId = null;
 		this.lectureNm = null;
 		this.kaisaiDate = null;
