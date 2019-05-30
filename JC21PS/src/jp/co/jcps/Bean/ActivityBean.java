@@ -1,7 +1,6 @@
 package jp.co.jcps.Bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 活動リストのBean
@@ -27,11 +26,11 @@ public class ActivityBean implements Serializable {
 	// 活動場所
 	private String activityPlace;
 
-	// 活動時間（自）
-	private Date activityStartTime;
+	// 活動日（表示用）
+	private String dispActivityDate;
 
-	// 活動時間（至）
-	private Date activityEndTime;
+	// 活動時間(表示用)
+	private String dispActivityTime;
 
 	// 活動説明
 	private String activityDescription;
@@ -56,8 +55,6 @@ public class ActivityBean implements Serializable {
 		this.activityId = null;
 		this.activityName = null;
 		this.activityPlace = null;
-		this.activityStartTime = null;
-		this.activityEndTime = null;
 		this.activityDescription = null;
 		this.participantsCount = null;
 		this.maxParticipants = null;
@@ -149,31 +146,31 @@ public class ActivityBean implements Serializable {
 	}
 
 	/**
-	 * @return activityStartTime
+	 * @return dispActivityDate
 	 */
-	public Date getActivityStartTime() {
-		return activityStartTime;
+	public String getDispActivityDate() {
+		return dispActivityDate;
 	}
 
 	/**
-	 * @param activityStartTime セットする activityStartTime
+	 * @param dispActivityDate セットする dispActivityDate
 	 */
-	public void setActivityStartTime(Date activityStartTime) {
-		this.activityStartTime = activityStartTime;
+	public void setDispActivityDate(String dispActivityDate) {
+		this.dispActivityDate = dispActivityDate;
 	}
 
 	/**
-	 * @return activityEndTime
+	 * @return dispActivityTime
 	 */
-	public Date getActivityEndTime() {
-		return activityEndTime;
+	public String getDispActivityTime() {
+		return dispActivityTime;
 	}
 
 	/**
-	 * @param activityEndTime セットする activityEndTime
+	 * @param dispActivityTime セットする dispActivityTime
 	 */
-	public void setActivityEndTime(Date activityEndTime) {
-		this.activityEndTime = activityEndTime;
+	public void setDispActivityTime(String dispActivityTime) {
+		this.dispActivityTime = dispActivityTime;
 	}
 
 	/**

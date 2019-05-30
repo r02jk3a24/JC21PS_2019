@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -129,5 +130,29 @@ public class Utils {
 		// 日付をセット
 		cal.set(Integer.parseInt(splitDate[0]), Integer.parseInt(splitDate[1]) - 1, Integer.parseInt(splitDate[2]));
 		return castDayOfWeekCalendarToIso(cal.get(Calendar.DAY_OF_WEEK));
+	}
+
+	/**
+	 * Timestamp から日付部分を取り出す
+	 * @param Timestamp
+	 * @return String yyyy/MM/ddの日付
+	 */
+	public static String getYYYYMMDD(Timestamp timestamp) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		return sdf.format(timestamp);
+	}
+
+	/**
+	 * 画面表示用に
+	 * hh:mm～hh:mmの文字列を作成する
+	 * @param Timestamp Timestamp
+	 * @return String
+	 */
+	public static String getDispActivityTimeString(Timestamp start, Timestamp end) {
+		String result;
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		result = sdf.format(start) + " ～ " + sdf.format(end);
+
+		return result;
 	}
 }

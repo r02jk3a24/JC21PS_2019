@@ -53,11 +53,16 @@
  			out.println("<tr>");
  			out.println("<td rowspan=3 colspan=1>" + no + "</td>");
      		out.println("<td colspan=4>" + bean.getClubActivityList().get(i).get(j).getActivityName() + "</td>");
-     		out.println("<td rowspan=3></td>"); //TODO 参加ステータス
+     		if(bean.getClubActivityList().get(i).get(j).getIsParticipationFlg()){
+     			out.println("<td rowspan=3>参加</br></br></br></br><input type=button value='不参加にする' onclick='location.href='/></td>");
+     		}else{
+     			out.println("<td rowspan=3>不参加</br></br></br></br><input type=button value='参加にする' onclick='location.href='/></td>");
+     		}
+
      		out.println("</tr>");
      		out.println("<tr>");
-     		out.println("<td></td>"); //TODO 活動日
-     		out.println("<td></td>"); //TODO 活動時間
+     		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getDispActivityDate() + "</td>");
+     		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getDispActivityTime() + "</td>");
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getActivityPlace() + "</td>");
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getParticipantsCount()+ "/" +bean.getClubActivityList().get(i).get(j).getMaxParticipants()+ "</td>");
      		out.println("</tr>");

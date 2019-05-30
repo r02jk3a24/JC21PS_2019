@@ -22,24 +22,17 @@ import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.Utils;
 
 /**
- * トップ画面の参加ボタン
+ * トップ画面のコントローラ
  */
-@WebServlet("/SaveParticipantServlet")
-public class TopControllerServlet extends HttpServlet {
+@WebServlet("/TopControllerServlet")
+public class SaveParticipantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * コンストラクタ
 	 */
-	public TopControllerServlet() {
+	public SaveParticipantServlet() {
 		super();
-	}
-
-	/**
-	 * POSTでリクエストされた場合の処理
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 	/**
@@ -148,5 +141,11 @@ public class TopControllerServlet extends HttpServlet {
 		request.getRequestDispatcher("A02/Top.jsp").forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }
