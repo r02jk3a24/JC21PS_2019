@@ -100,7 +100,7 @@ public class LoginControllerServlet extends HttpServlet {
 				// セッションを開始
 				HttpSession session = request.getSession(true);
 				// ログイン情報をセッションに保持
-				session.setAttribute("user_id", rs.getString("user_id"));
+				session.setAttribute("userId", rs.getString("user_id"));
 
 				// ログイン成功の場合は履修講義一覧画面に遷移する
 				request.getRequestDispatcher("/TopControllerServlet").forward(request, response);

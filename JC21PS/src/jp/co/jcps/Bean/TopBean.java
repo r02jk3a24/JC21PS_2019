@@ -1,7 +1,8 @@
 package jp.co.jcps.Bean;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Top画面のBean
@@ -9,163 +10,56 @@ import java.util.Date;
  */
 public class TopBean implements Serializable {
 
-	// No
-	private String no;
-
-	// 活動ID
-	private String activityId;
-
-	// 部活ID
-	private String clubId;
-
-	// 活動名
-	private String ActivityName;
-
-	// 活動場所
-	private String ActivityPlace;
-
-	// 活動時間（自）
-	private Date ActivityStartTime;
-
-	// 活動時間（至）
-	private Date ActivityEndTime;
-
-	// 活動説明
-	private String ActivityDescription;
-
-	// 参加予定人数
-	private Integer participantsCount;
-
-	// 参加上限人数
-	private Integer maxParticipants;
+	// 部活名のリスト
+	private List<String> clubNameList;
+	// 部活毎の活動リスト
+	private List<List<ActivityBean>> clubActivityList;
 
 	/**
 	 * コンストラクタ
 	 *
 	 */
 	public TopBean() {
-		this.activityId = null;
-		this.clubId = null;
-		this.ActivityName = null;
-		this.ActivityPlace = null;
-		this.ActivityStartTime = null;
-		this.ActivityEndTime = null;
-		this.ActivityDescription = null;
-		this.maxParticipants = null;
+		this.clubNameList = new ArrayList<>();
+		this.clubActivityList = new ArrayList<>();
 
 	}
 
 	/**
-	 * @return activityId
+	 * @return clubNameList
 	 */
-	public String getActivityId() {
-		return activityId;
+	public List<String> getClubNameList() {
+		return clubNameList;
 	}
 
 	/**
-	 * @param activityId セットする activityId
+	 * @param clubNameList セットする clubNameList
 	 */
-	public void setActivityId(String activityId) {
-		this.activityId = activityId;
+	public void setClubNameList(List<String> clubNameList) {
+		this.clubNameList = clubNameList;
 	}
 
 	/**
-	 * @return clubId
+	 * @param clubNameList に要素を追加する clubName
 	 */
-	public String getClubId() {
-		return clubId;
+	public void addClubNameList(String clubName) {
+		this.clubNameList.add(clubName);
 	}
 
 	/**
-	 * @param clubId セットする clubId
+	 * @return clubActivityMap
 	 */
-	public void setClubId(String clubId) {
-		this.clubId = clubId;
+	public List<List<ActivityBean>> getClubActivityList() {
+		return clubActivityList;
 	}
 
 	/**
-	 * @return activityName
+	 * @param clubActivityMap セットする clubActivityMap
 	 */
-	public String getActivityName() {
-		return ActivityName;
+	public void setClubActivityList(List<List<ActivityBean>> clubActivityList) {
+		this.clubActivityList = clubActivityList;
 	}
 
-	/**
-	 * @param activityName セットする activityName
-	 */
-	public void setActivityName(String activityName) {
-		ActivityName = activityName;
-	}
-
-	/**
-	 * @return activityPlace
-	 */
-	public String getActivityPlace() {
-		return ActivityPlace;
-	}
-
-	/**
-	 * @param activityPlace セットする activityPlace
-	 */
-	public void setActivityPlace(String activityPlace) {
-		ActivityPlace = activityPlace;
-	}
-
-	/**
-	 * @return activityStartTime
-	 */
-	public Date getActivityStartTime() {
-		return ActivityStartTime;
-	}
-
-	/**
-	 * @param activityStartTime セットする activityStartTime
-	 */
-	public void setActivityStartTime(Date activityStartTime) {
-		ActivityStartTime = activityStartTime;
-	}
-
-	/**
-	 * @return activityEndTime
-	 */
-	public Date getActivityEndTime() {
-		return ActivityEndTime;
-	}
-
-	/**
-	 * @param activityEndTime セットする activityEndTime
-	 */
-	public void setActivityEndTime(Date activityEndTime) {
-		ActivityEndTime = activityEndTime;
-	}
-
-	/**
-	 * @return activityDescription
-	 */
-	public String getActivityDescription() {
-		return ActivityDescription;
-	}
-
-	/**
-	 * @param activityDescription セットする activityDescription
-	 */
-	public void setActivityDescription(String activityDescription) {
-		ActivityDescription = activityDescription;
-	}
-
-	/**
-	 * @return maxParticipants
-	 */
-	public Integer getMaxParticipants() {
-		return maxParticipants;
-	}
-
-	/**
-	 * @param maxParticipants セットする maxParticipants
-	 */
-	public void setMaxParticipants(Integer maxParticipants) {
-		this.maxParticipants = maxParticipants;
-	}
 
 
 }
