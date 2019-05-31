@@ -80,7 +80,7 @@ public class LoginControllerServlet extends HttpServlet {
 			con = ds.getConnection();
 
 			// SQLの実行
-			String sql = "SELECT user_id FROM mst_user WHERE login_name = '" +  loginName + "'AND password = '" + password + "'";
+			String sql = "SELECT user.user_id,member.club_id FROM mst_user user LEFT JOIN trn_club_member member ON user.user_id = member.user_id AND member.leader_flg = 1 WHERE user.login_name = '" +  loginName + "'AND user.password = '" + password + "';";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -101,6 +101,9 @@ public class LoginControllerServlet extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				// ログイン情報をセッションに保持
 				session.setAttribute("userId", rs.getString("user_id"));
+				if(rs.getString("club_id") != null) {
+					session.setAttribute("leaderClubId", rs.getString("club_id"));
+				}
 
 				// ログイン成功の場合は履修講義一覧画面に遷移する
 				request.getRequestDispatcher("/TopControllerServlet").forward(request, response);

@@ -23,6 +23,8 @@
 <body>
   <div class="container"></div>
   <h2 class="teacher-header">トップ</h2>
+  <jsp:include page="/A00/Header.jsp"></jsp:include>
+
   <%
 	// メッセージがある場合は表示
 	for(int i = 0; i < messageBean.getMessageList().size(); i++){
