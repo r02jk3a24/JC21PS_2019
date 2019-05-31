@@ -1,30 +1,26 @@
 package jp.co.jcps.A02;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 import jp.co.jcps.Bean.ActivityBean;
 import jp.co.jcps.Bean.TopBean;
 import jp.co.jcps.Common.CommonCheck;
+import jp.co.jcps.Common.DBConnection;
 import jp.co.jcps.Common.Utils;
 
 /**
- * トップ画面の参加ボタン
+ * トップ画面のコントローラー
  */
-@WebServlet("/SaveParticipantServlet")
+@WebServlet("/TopControllerServlet")
 public class TopControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +35,7 @@ public class TopControllerServlet extends HttpServlet {
 	 * POSTでリクエストされた場合の処理
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doGet(request, response);
 	}
 
 	/**
@@ -55,10 +51,18 @@ public class TopControllerServlet extends HttpServlet {
 		// セッションからログイン中のユーザーIDを取得する
 		String userId = (String) request.getSession().getAttribute("userId");
 
-		// DB接続
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		// SQLに埋め込むパラメータリストを定義
+		List<String> paramList = new ArrayList<String>();
+		paramList.add(userId);
+		paramList.add(userId);
+
+		// SQLを設定
+		String sql = "SELECT activity.*,club.club_id,club.club_name,count.count,isnull(participant.user_id) != 1 as participation_flg FROM trn_activity as activity INNER JOIN mst_club as club USING(club_id) INNER JOIN trn_club_member as member ON club.club_id = member.club_id LEFT JOIN (SELECT activity_id,count(*) as count FROM trn_participant GROUP BY activity_id) as count ON count.activity_id = activity.activity_id LEFT JOIN trn_participant as participant ON participant.user_id = ? AND participant.activity_id = activity.activity_id WHERE member.user_id = ? ORDER BY club.club_id ASC,activity.activity_start_time ASC;";
+
+		// SQLを実行し結果を取得
+		DBConnection db = new DBConnection();
+		ResultSet rs = db.executeSelectQuery(sql, paramList);
+
 
 		// 比較用の部活ID
 		String tmpClubId = null;
@@ -72,18 +76,6 @@ public class TopControllerServlet extends HttpServlet {
 		TopBean bean = new TopBean();
 
 		try {
-			// データソースの取得
-			Context ctx = new InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jc21ps");
-
-			// データベースへ接続
-			con = ds.getConnection();
-
-			String sql = "SELECT activity.*,club.club_id,club.club_name,count.count,isnull(participant.user_id) != 1 as participation_flg FROM trn_activity as activity INNER JOIN mst_club as club USING(club_id) INNER JOIN trn_club_member as member ON club.club_id = member.club_id LEFT JOIN (SELECT activity_id,count(*) as count FROM trn_participant GROUP BY activity_id) as count ON count.activity_id = activity.activity_id LEFT JOIN trn_participant as participant ON participant.user_id = ? AND participant.activity_id = activity.activity_id WHERE member.user_id = ? ORDER BY club.club_id ASC,activity.activity_start_time ASC;";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			pstmt.setString(2, userId);
-			rs = pstmt.executeQuery();
 
 			// リストにDBから取得した値をセット
 			while(rs.next()) {
@@ -132,9 +124,7 @@ public class TopControllerServlet extends HttpServlet {
 			throw new ServletException(e);
 		} finally {
 			try {
-				rs.close();
-				pstmt.close();
-				con.close();
+				db.close();
 			} catch (Exception e) {
 			}
 		}

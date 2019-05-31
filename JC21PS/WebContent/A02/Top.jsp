@@ -29,6 +29,7 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
+  <form action="/JC21PS/SaveParticipationServlet" method="POST">
   <%
  	for(int i = 0; i < bean.getClubActivityList().size(); i++){
  		out.println("<h2>" + bean.getClubNameList().get(i) + "</h2>");
@@ -54,9 +55,10 @@
  			out.println("<td rowspan=3 colspan=1>" + no + "</td>");
      		out.println("<td colspan=4>" + bean.getClubActivityList().get(i).get(j).getActivityName() + "</td>");
      		if(bean.getClubActivityList().get(i).get(j).getIsParticipationFlg()){
-     			out.println("<td rowspan=3>参加</br></br></br></br><input type=button value='不参加にする' onclick='location.href='/></td>");
+     			out.println("<td rowspan=3>参加</br></br></br></br><button type='submit' name='activityId' value='" + bean.getClubActivityList().get(i).get(j).getActivityId() + "'/>不参加にする</td>");
+
      		}else{
-     			out.println("<td rowspan=3>不参加</br></br></br></br><input type=button value='参加にする' onclick='location.href='/></td>");
+     			out.println("<td rowspan=3>不参加</br></br></br></br><button type='submit' name='activityId' value='" + bean.getClubActivityList().get(i).get(j).getActivityId() + "'/>参加にする</td>");
      		}
 
      		out.println("</tr>");
@@ -75,7 +77,7 @@
  		out.println("</br></br>");
  	}
  %>
-
+</form>
 
 </body>
 </html>
