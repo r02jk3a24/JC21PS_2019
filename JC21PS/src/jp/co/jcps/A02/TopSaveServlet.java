@@ -17,14 +17,14 @@ import jp.co.jcps.Common.DBConnection;
 /**
  * 参加・不参加を登録する
  */
-@WebServlet("/SaveParticipationServlet")
-public class SaveParticipationServlet extends HttpServlet {
+@WebServlet("/TopSave")
+public class TopSaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * コンストラクタ
 	 */
-	public SaveParticipationServlet() {
+	public TopSaveServlet() {
 		super();
 	}
 
@@ -79,7 +79,7 @@ public class SaveParticipationServlet extends HttpServlet {
 		}
 
 		// TOP画面の呼び出し
-		request.getRequestDispatcher("/TopControllerServlet").forward(request, response);
+		request.getRequestDispatcher("/TopController").forward(request, response);
 	}
 
 	private void insertTrnParticipant(List<String> paramList) {

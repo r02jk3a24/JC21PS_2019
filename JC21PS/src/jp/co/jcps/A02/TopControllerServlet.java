@@ -20,7 +20,7 @@ import jp.co.jcps.Common.Utils;
 /**
  * トップ画面のコントローラー
  */
-@WebServlet("/TopControllerServlet")
+@WebServlet("/TopController")
 public class TopControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

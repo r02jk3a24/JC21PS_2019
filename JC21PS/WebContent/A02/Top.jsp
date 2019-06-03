@@ -31,7 +31,7 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
-  <form action="/JC21PS/SaveParticipationServlet" method="POST">
+  <form action="/JC21PS/TopSave" method="POST">
   <%
  	for(int i = 0; i < bean.getClubActivityList().size(); i++){
  		out.println("<h2>" + bean.getClubNameList().get(i) + "</h2>");

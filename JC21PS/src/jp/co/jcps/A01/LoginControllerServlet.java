@@ -106,7 +106,7 @@ public class LoginControllerServlet extends HttpServlet {
 				}
 
 				// ログイン成功の場合は履修講義一覧画面に遷移する
-				request.getRequestDispatcher("/TopControllerServlet").forward(request, response);
+				request.getRequestDispatcher("/TopController").forward(request, response);
 			}
 
 		} catch (Exception e) {
