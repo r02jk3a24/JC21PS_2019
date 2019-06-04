@@ -74,7 +74,11 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		paramList.add(startTime);
 		paramList.add(endTime);
 		paramList.add(request.getParameter("registActivityDescription"));
-		paramList.add(request.getParameter("registMaxParticipant"));
+		if(!request.getParameter("registMaxParticipant").isEmpty()) {
+			paramList.add(request.getParameter("registMaxParticipant"));
+		}else {
+			paramList.add("-");
+		}
 
 
 		// SQLを実行し結果を取得

@@ -144,6 +144,10 @@ public class TopControllerServlet extends HttpServlet {
 	 *
 	 */
 	private boolean isMajority(String participant, String maxParticipant) {
+		// 募集人数が設定されていない場合はfalseを返却
+		if(maxParticipant.equals("-")) {
+			return false;
+		}
 		double num = Double.valueOf(participant);
 		double max = Double.valueOf(maxParticipant);
 
