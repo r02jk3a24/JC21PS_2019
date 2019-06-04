@@ -68,7 +68,7 @@
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getDispActivityDate() + "</td>");
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getDispActivityTime() + "</td>");
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getActivityPlace() + "</td>");
-     		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getParticipantsCount()+ "/" +bean.getClubActivityList().get(i).get(j).getMaxParticipants()+ "</td>");
+     		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getParticipantsCount()+ "/" +bean.getClubActivityList().get(i).get(j).getMaxParticipant()+ "</td>");
      		out.println("</tr>");
      		out.println("<tr>");
      		out.println("<td colspan=4>" + bean.getClubActivityList().get(i).get(j).getActivityDescription() + "</td>");

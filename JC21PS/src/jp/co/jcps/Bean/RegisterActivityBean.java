@@ -8,9 +8,6 @@ import java.io.Serializable;
  */
 public class RegisterActivityBean implements Serializable {
 
-	// No
-	private String no;
-
 	// 部活名
 	private String clubName;
 
@@ -33,7 +30,7 @@ public class RegisterActivityBean implements Serializable {
 	private String activityDescription;
 
 	// 参加上限人数
-	private Integer maxParticipants;
+	private String maxParticipant;
 
 	/**
 	 * コンストラクタ
@@ -46,21 +43,7 @@ public class RegisterActivityBean implements Serializable {
 		this.activityStartTime = null;
 		this.activityEndTime = null;
 		this.activityDescription = null;
-		this.maxParticipants = null;
-	}
-
-	/**
-	 * @return no
-	 */
-	public String getNo() {
-		return no;
-	}
-
-	/**
-	 * @param no セットする no
-	 */
-	public void setNo(String no) {
-		this.no = no;
+		this.maxParticipant = null;
 	}
 
 	/**
@@ -106,6 +89,48 @@ public class RegisterActivityBean implements Serializable {
 	}
 
 	/**
+	 * @return activityDate
+	 */
+	public String getActivityDate() {
+		return activityDate;
+	}
+
+	/**
+	 * @param activityDate セットする activityDate
+	 */
+	public void setActivityDate(String activityDate) {
+		this.activityDate = activityDate;
+	}
+
+	/**
+	 * @return activityStartTime
+	 */
+	public String getActivityStartTime() {
+		return activityStartTime;
+	}
+
+	/**
+	 * @param activityStartTime セットする activityStartTime
+	 */
+	public void setActivityStartTime(String activityStartTime) {
+		this.activityStartTime = activityStartTime;
+	}
+
+	/**
+	 * @return activityEndTime
+	 */
+	public String getActivityEndTime() {
+		return activityEndTime;
+	}
+
+	/**
+	 * @param activityEndTime セットする activityEndTime
+	 */
+	public void setActivityEndTime(String activityEndTime) {
+		this.activityEndTime = activityEndTime;
+	}
+
+	/**
 	 * @return activityDescription
 	 */
 	public String getActivityDescription() {
@@ -120,17 +145,17 @@ public class RegisterActivityBean implements Serializable {
 	}
 
 	/**
-	 * @return maxParticipants
+	 * @return maxParticipant
 	 */
-	public Integer getMaxParticipants() {
-		return maxParticipants;
+	public String getMaxParticipant() {
+		return maxParticipant;
 	}
 
 	/**
-	 * @param maxParticipants セットする maxParticipants
+	 * @param maxParticipant セットする maxParticipant
 	 */
-	public void setMaxParticipants(Integer maxParticipants) {
-		this.maxParticipants = maxParticipants;
+	public void setMaxParticipant(String maxParticipant) {
+		this.maxParticipant = maxParticipant;
 	}
 
 }

@@ -39,7 +39,7 @@ public class ActivityBean implements Serializable {
 	private Integer participantsCount;
 
 	// 参加上限人数
-	private Integer maxParticipants;
+	private Integer maxParticipant;
 
 	// 参加予定フラグ
 	private Boolean isParticipationFlg;
@@ -57,7 +57,7 @@ public class ActivityBean implements Serializable {
 		this.activityPlace = null;
 		this.activityDescription = null;
 		this.participantsCount = null;
-		this.maxParticipants = null;
+		this.maxParticipant = null;
 		this.isParticipationFlg = null;
 	}
 
@@ -202,17 +202,17 @@ public class ActivityBean implements Serializable {
 	}
 
 	/**
-	 * @return maxParticipants
+	 * @return maxParticipant
 	 */
-	public Integer getMaxParticipants() {
-		return maxParticipants;
+	public Integer getMaxParticipant() {
+		return maxParticipant;
 	}
 
 	/**
-	 * @param maxParticipants セットする maxParticipants
+	 * @param maxParticipant セットする maxParticipant
 	 */
-	public void setMaxParticipants(Integer maxParticipants) {
-		this.maxParticipants = maxParticipants;
+	public void setMaxParticipant(Integer maxParticipant) {
+		this.maxParticipant = maxParticipant;
 	}
 
 	/**

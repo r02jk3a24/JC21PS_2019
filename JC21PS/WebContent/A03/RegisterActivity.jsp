@@ -31,7 +31,7 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
-  <form action="/JC21PS/SaveParticipationServlet" method="POST">
+  <form action="/JC21PS/RegisterActivitySave" method="POST">
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
@@ -40,14 +40,18 @@
   		</tr>
   		<tr>
   			<th colspan="1">活動名</th>
-  			<td colspan="3"><input type="text" name="registActivityName" maxlength="30"/></td>
+  			<td colspan="3"><input type="text" name="registActivityName" maxlength="30" required/></td>
   		</tr>
   		<tr>
   			<th colspan="1">活動日</th>
-  			<td colspan="1"><input type="date" name="registActivityDate" maxlength="10"/></td>
+  			<td colspan="1"><input type="date" name="registActivityDate" maxlength="10" required/></td>
   			<th colspan="1">活動時間</th>
-  			<td colspan="1"><input type="time" name="registActivityStartTime" maxlength="30"/>～
-  			<input type="time" name="registActivityEndTime" maxlength="30"/></td>
+  			<td colspan="1"><input type="time" name="registActivityStartTime" maxlength="30" required/>～
+  			<input type="time" name="registActivityEndTime" maxlength="30" required/></td>
+  		</tr>
+  		<tr>
+  			<th colspan="1">活動場所</th>
+  			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="10"/></td>
   		</tr>
   		<tr>
   			<th colspan="1">募集人数</th>
@@ -55,15 +59,13 @@
   		</tr>
   		<tr>
   			<th colspan="1">活動説明</th>
-  			<td colspan="3"><textarea name="registMaxParticipant"  rows="5" cols="80"></textarea></td>
+  			<td colspan="3"><textarea name="registActivityDescription"  rows="5" cols="80"></textarea></td>
   		</tr>
   		</tbody>
   	</table>
-  	<div  align="center">
-  		<input type="button" name="save" value="登録" onclick="saveLecture()" class="btn btn-primary">
-  		<input type="button" name="save" value="戻る" onclick="saveLecture()" class="btn btn-primary">
+  	<div align="center">
+  	<input type='submit' value='登録' onclick='return confirm("活動を登録しますか？");' class="btn btn-primary"/>
   	</div>
 </form>
-
 </body>
 </html>

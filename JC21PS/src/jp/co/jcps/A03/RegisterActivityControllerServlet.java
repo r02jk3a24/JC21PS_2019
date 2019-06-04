@@ -40,7 +40,6 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 		}
 
 		// セッションからログイン中のユーザーIDを取得する
-		String userId = (String) request.getSession().getAttribute("userId");
 		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
 
 		// SQLに埋め込むパラメータリストを定義

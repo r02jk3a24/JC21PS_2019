@@ -32,13 +32,6 @@ public class TopControllerServlet extends HttpServlet {
 	}
 
 	/**
-	 * POSTでリクエストされた場合の処理
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
-	/**
 	 * GETメソッドでリクエストされた場合の処理
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,7 +98,7 @@ public class TopControllerServlet extends HttpServlet {
 				activity.setDispActivityTime(Utils.getDispActivityTimeString(rs.getTimestamp("activity_start_time"), rs.getTimestamp("activity_end_time")));
 				activity.setActivityDescription(rs.getString("activity_description"));
 				activity.setParticipantsCount(rs.getInt("count"));
-				activity.setMaxParticipants(rs.getInt("max_participants"));
+				activity.setMaxParticipant(rs.getInt("max_participant"));
 				activity.setIsParticipationFlg(rs.getBoolean("participation_flg"));
 
 				// 活動リストに活動を追加
@@ -136,6 +129,13 @@ public class TopControllerServlet extends HttpServlet {
 
 		// 履修講義一覧画面を表示
 		request.getRequestDispatcher("A02/Top.jsp").forward(request, response);
+	}
+
+	/**
+	 * POSTでリクエストされた場合の処理
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 

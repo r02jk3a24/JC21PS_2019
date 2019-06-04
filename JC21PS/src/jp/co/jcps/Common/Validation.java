@@ -50,6 +50,9 @@ public class Validation {
 	 * @return messageBean
 	 */
 	public static MessageBean checkLegalLengthString(String str, int maxLength, String field, MessageBean messageBean) {
+		if(str == null) {
+			return messageBean;
+		}
 		if(str.length() <= maxLength) {
 			return messageBean;
 		}else {
@@ -66,10 +69,10 @@ public class Validation {
 	 * @return
 	 */
 	public static MessageBean checkRequired(String str,String field, MessageBean messageBean) {
-		if(str.length() != 0) {
+		if(str == null || str.length() == 0) {
+			messageBean.addMessageList(field + "は必須項目です。");
 			return messageBean;
 		}else {
-			messageBean.addMessageList(field + "は必須項目です。");
 			return messageBean;
 		}
 	}
