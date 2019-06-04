@@ -50,7 +50,7 @@ public class TopControllerServlet extends HttpServlet {
 		paramList.add(userId);
 
 		// SQLを設定
-		String sql = "SELECT activity.*,club.club_id,club.club_name,count.count,isnull(participant.user_id) != 1 as participation_flg FROM trn_activity as activity INNER JOIN mst_club as club USING(club_id) INNER JOIN trn_club_member as member ON club.club_id = member.club_id LEFT JOIN (SELECT activity_id,count(*) as count FROM trn_participant GROUP BY activity_id) as count ON count.activity_id = activity.activity_id LEFT JOIN trn_participant as participant ON participant.user_id = ? AND participant.activity_id = activity.activity_id WHERE member.user_id = ? ORDER BY club.club_id ASC,activity.activity_start_time ASC;";
+		String sql = "SELECT activity.*,club.club_id,club.club_name,COALESCE(count.count,0) as count,isnull(participant.user_id) != 1 as participation_flg FROM trn_activity as activity INNER JOIN mst_club as club USING(club_id) INNER JOIN trn_club_member as member ON club.club_id = member.club_id LEFT JOIN (SELECT activity_id,count(*) as count FROM trn_participant GROUP BY activity_id) as count ON count.activity_id = activity.activity_id LEFT JOIN trn_participant as participant ON participant.user_id = ? AND participant.activity_id = activity.activity_id WHERE member.user_id = ? ORDER BY club.club_id ASC,activity.activity_start_time ASC;";
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -97,9 +97,10 @@ public class TopControllerServlet extends HttpServlet {
 				activity.setDispActivityDate(Utils.getYYYYMMDD(rs.getTimestamp("activity_start_time")));
 				activity.setDispActivityTime(Utils.getDispActivityTimeString(rs.getTimestamp("activity_start_time"), rs.getTimestamp("activity_end_time")));
 				activity.setActivityDescription(rs.getString("activity_description"));
-				activity.setParticipantsCount(rs.getInt("count"));
-				activity.setMaxParticipant(rs.getInt("max_participant"));
+				activity.setParticipantsCount(rs.getString("count"));
+				activity.setMaxParticipant(rs.getString("max_participant"));
 				activity.setIsParticipationFlg(rs.getBoolean("participation_flg"));
+				activity.setIsMajorityFlg(isMajority(rs.getString("count"),rs.getString("max_participant")));
 
 				// 活動リストに活動を追加
 				activityList.add(activity);
@@ -138,5 +139,19 @@ public class TopControllerServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	/**
+	 * 過半数を超えているかを判定する
+	 *
+	 */
+	private boolean isMajority(String participant, String maxParticipant) {
+		double num = Double.valueOf(participant);
+		double max = Double.valueOf(maxParticipant);
 
+		if(num/max >= 0.5) {
+			return true;
+		}else {
+			return false;
+		}
+
+	}
 }

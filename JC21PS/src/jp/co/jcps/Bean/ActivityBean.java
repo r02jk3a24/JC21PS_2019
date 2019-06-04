@@ -36,13 +36,16 @@ public class ActivityBean implements Serializable {
 	private String activityDescription;
 
 	// 参加予定人数
-	private Integer participantsCount;
+	private String participantsCount;
 
 	// 参加上限人数
-	private Integer maxParticipant;
+	private String maxParticipant;
 
 	// 参加予定フラグ
 	private Boolean isParticipationFlg;
+
+	// 過半数フラグ
+	private Boolean isMajorityFlg;
 
 	/**
 	 * コンストラクタ
@@ -59,6 +62,7 @@ public class ActivityBean implements Serializable {
 		this.participantsCount = null;
 		this.maxParticipant = null;
 		this.isParticipationFlg = null;
+		this.isMajorityFlg = null;
 	}
 
 	/**
@@ -190,28 +194,28 @@ public class ActivityBean implements Serializable {
 	/**
 	 * @return participantsCount
 	 */
-	public Integer getParticipantsCount() {
+	public String getParticipantsCount() {
 		return participantsCount;
 	}
 
 	/**
 	 * @param participantsCount セットする participantsCount
 	 */
-	public void setParticipantsCount(Integer participantsCount) {
+	public void setParticipantsCount(String participantsCount) {
 		this.participantsCount = participantsCount;
 	}
 
 	/**
 	 * @return maxParticipant
 	 */
-	public Integer getMaxParticipant() {
+	public String getMaxParticipant() {
 		return maxParticipant;
 	}
 
 	/**
 	 * @param maxParticipant セットする maxParticipant
 	 */
-	public void setMaxParticipant(Integer maxParticipant) {
+	public void setMaxParticipant(String maxParticipant) {
 		this.maxParticipant = maxParticipant;
 	}
 
@@ -228,5 +232,21 @@ public class ActivityBean implements Serializable {
 	public void setIsParticipationFlg(Boolean isParticipationFlg) {
 		this.isParticipationFlg = isParticipationFlg;
 	}
+
+	/**
+	 * @return isMajorityFlg
+	 */
+	public Boolean getIsMajorityFlg() {
+		return isMajorityFlg;
+	}
+
+	/**
+	 * @param isMajorityFlg セットする isMajorityFlg
+	 */
+	public void setIsMajorityFlg(Boolean isMajorityFlg) {
+		this.isMajorityFlg = isMajorityFlg;
+	}
+
+
 
 }
