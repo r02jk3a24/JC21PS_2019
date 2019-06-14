@@ -36,7 +36,7 @@ public class ActivityBean implements Serializable {
 	private String activityDescription;
 
 	// 参加予定人数
-	private String participantsCount;
+	private Integer participantsCount;
 
 	// 参加上限人数
 	private String maxParticipant;
@@ -194,14 +194,14 @@ public class ActivityBean implements Serializable {
 	/**
 	 * @return participantsCount
 	 */
-	public String getParticipantsCount() {
+	public Integer getParticipantsCount() {
 		return participantsCount;
 	}
 
 	/**
 	 * @param participantsCount セットする participantsCount
 	 */
-	public void setParticipantsCount(String participantsCount) {
+	public void setParticipantsCount(Integer participantsCount) {
 		this.participantsCount = participantsCount;
 	}
 

@@ -68,7 +68,11 @@
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getDispActivityDate() + "</td>");
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getDispActivityTime() + "</td>");
      		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getActivityPlace() + "</td>");
-     		out.println("<td>" + bean.getClubActivityList().get(i).get(j).getParticipantsCount()+ "/" +bean.getClubActivityList().get(i).get(j).getMaxParticipant()+ "</td>");
+     		if(bean.getClubActivityList().get(i).get(j).getIsMajorityFlg()){
+     			out.println("<td bgcolor='#ffe5e5'>" + bean.getClubActivityList().get(i).get(j).getParticipantsCount()+ "/" +bean.getClubActivityList().get(i).get(j).getMaxParticipant()+ "</td>");
+     		}else{
+     			out.println("<td>" + bean.getClubActivityList().get(i).get(j).getParticipantsCount()+ "/" +bean.getClubActivityList().get(i).get(j).getMaxParticipant()+ "</td>");
+     		}
      		out.println("</tr>");
      		out.println("<tr>");
      		out.println("<td colspan=4>" + bean.getClubActivityList().get(i).get(j).getActivityDescription() + "</td>");

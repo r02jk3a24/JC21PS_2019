@@ -92,7 +92,7 @@ public class TopSaveServlet extends HttpServlet {
 	}
 
 	private void deleteTrnParticipant(List<String> paramList) {
-		// インサートするSQL
+		// デリートするSQL
 		String sql = "DELETE FROM trn_participant WHERE activity_id = ? AND user_id = ?;";
 
 		// SQLを実行し結果を取得

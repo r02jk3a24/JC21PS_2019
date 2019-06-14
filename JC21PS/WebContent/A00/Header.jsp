@@ -10,8 +10,8 @@
   	}
   %>
   <br/>
-  <div style="margin-left:auto">
-  	<% if(leaderClubId != null){ %>
+  <div style="text-align: right; padding-right:10px;">
+  	<% if(!leaderClubId.isEmpty()){ %>
   	<input type="button" onclick="location.href='/JC21PS/RegisterActivityController'" value="活動登録"/>
   	<input type="button" onclick="location.href=/JC21PS/RegisterActivity" value="部活情報登録"/>
   	<input type="button" onclick="location.href=/JC21PS/RegisterActivity" value="部員登録承認"/>

@@ -32,6 +32,7 @@
 	}
   %>
   <form action="/JC21PS/RegisterActivitySave" method="POST">
+  <input type="hidden" name=registClubName value=<%= bean.getClubName() %>>
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
@@ -40,26 +41,26 @@
   		</tr>
   		<tr>
   			<th colspan="1">活動名</th>
-  			<td colspan="3"><input type="text" name="registActivityName" maxlength="30" required/></td>
+  			<td colspan="3"><input type="text" name="registActivityName"  maxlength="30" value=<%= bean.getActivityName()%>></td>
   		</tr>
   		<tr>
   			<th colspan="1">活動日</th>
-  			<td colspan="1"><input type="date" name="registActivityDate" maxlength="10" required/></td>
+  			<td colspan="1"><input type="date" name="registActivityDate"  maxlength="10" value=<%= bean.getActivityDate()%>></td>
   			<th colspan="1">活動時間</th>
-  			<td colspan="1"><input type="time" name="registActivityStartTime" maxlength="30" required/>～
-  			<input type="time" name="registActivityEndTime" maxlength="30" required/></td>
+  			<td colspan="1"><input type="time" name="registActivityStartTime" maxlength="30" value=<%= bean.getActivityStartTime()%>>～
+  			<input type="time" name="registActivityEndTime" maxlength="30" value=<%= bean.getActivityEndTime()%>></td>
   		</tr>
   		<tr>
   			<th colspan="1">活動場所</th>
-  			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="10"/></td>
+  			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="10" value=<%= bean.getActivityPlace()%>></td>
   		</tr>
   		<tr>
   			<th colspan="1">募集人数</th>
-  			<td colspan="3"><input type="text" name="registMaxParticipant" maxlength="10"/></td>
+  			<td colspan="3"><input type="text" name="registMaxParticipant" maxlength="10" value=<%= bean.getMaxParticipant()%>></td>
   		</tr>
   		<tr>
   			<th colspan="1">活動説明</th>
-  			<td colspan="3"><textarea name="registActivityDescription"  rows="5" cols="80"></textarea></td>
+  			<td colspan="3"><textarea name="registActivityDescription"  rows="5" cols="80"><%= bean.getActivityDescription()%></textarea></td>
   		</tr>
   		</tbody>
   	</table>

@@ -1,13 +1,9 @@
 package jp.co.jcps.Common;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import jp.co.jcps.Bean.MessageBean;
@@ -165,26 +161,6 @@ public class Validation {
 		return messageBean;
 	}
 
-
-	/**
-	 * 翌日以降かどうかチェックする
-	 * @param date
-	 * @param field
-	 * @return
-	 */
-	public static boolean checkIsAfterTommorowDateBool(String date) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-		Calendar now = Calendar.getInstance();
-		String today = format.format(now.getTime());
-		if(date.compareTo(today) > 0) {
-			// 日付が翌日以降ならエラーなし
-			return true;
-		} else {
-			// 過去もしくは当日の場合はエラー
-			return false;
-		}
-	}
-
 	/**
 	 * yyyy/MM/ddの日付かどうかチェックする
 	 * @param date
@@ -205,64 +181,34 @@ public class Validation {
 	}
 
 	/**
-	 * 入力された曜日と日付の整合性をチェックする
-	 * @param date
-	 * @param youbi
-	 * @param messageBean
-	 * @return
+	 * 活動時間の型と前後のチェックを行う
 	 */
-	public static MessageBean checkDayOfWeek(String date, String youbi, MessageBean messageBean) {
-		if(Utils.getDayOfWeek(date) == Integer.parseInt(youbi)) {
-			return messageBean;
+
+	public static MessageBean checkCorrectActivityTime(String startTime, String endTime, MessageBean messageBean) {
+
+		Pattern pattern = Pattern.compile("([0-9]|[0-1][0-9]|[2][0-3]):([0-9]|[0-5][0-9])$");
+
+		boolean returnFlg = false;
+
+		if(!pattern.matcher(startTime).matches()) {
+			messageBean.addMessageList("活動時間（自）はhh:mm形式で入力してください。");
+			returnFlg = true;
 		}
-		messageBean.addMessageList("入力された日付と曜日が異なります。");
+		if(!pattern.matcher(endTime).matches()) {
+			messageBean.addMessageList("活動時間（至）はhh:mm形式で入力してください。");
+			returnFlg = true;
+		}
+
+		if(returnFlg) {
+			return messageBean;
+		} else {
+			// 前後チェック
+			if(startTime.compareTo(endTime) >= 0) {
+				messageBean.addMessageList("活動時間の前後関係が不正です。");
+			}
+
+		}
+
 		return messageBean;
 	}
-
-	/**
-	 * 講義データが更新可能かチェックする
-	 * @param lectureScheduleId
-	 * @return
-	 */
-	public static boolean isAbleUpdateLecture(String lectureScheduleId) {
-		// 講義情報を取得するSQLを定義
-		String sql = "SELECT attendance_cd, delete_flg, kaisai_date, sel.lecture_id as selected FROM lecture_schedule_tbl lst LEFT JOIN (SELECT lecture_id FROM selected_lecture_tbl GROUP BY lecture_id) sel ON sel.lecture_id = lst.lecture_id WHERE  lecture_schedule_id = ?;";
-
-		// SQLに埋め込むパラメータリストを定義
-		List<String> paramList = new ArrayList<String>();
-		paramList.add(lectureScheduleId);
-
-		// SQLを実行し結果を取得
-		DBConnection db = new DBConnection();
-		ResultSet rs = db.executeSelectQuery(sql, paramList);
-
-		// リストにDBから取得した値をセット
-		try {
-			while(rs.next()) {
-				String attendanceCd = rs.getString("attendance_cd");
-				String deleteFlg = rs.getString("delete_flg");
-				String kaisaiDate = rs.getString("kaisai_date").replace("-", "/");
-				String selected = rs.getString("selected");
-
-				// 出席コードが登録されている、削除フラグが1、履修登録されているのどれかに該当する場合はFalseを返却
-				if(attendanceCd != null || deleteFlg.equals("1") || selected != null) {
-					return false;
-				}
-
-				// 講義日が当日以前の場合はFalseを返却
-				return checkIsAfterTommorowDateBool(kaisaiDate);
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			try {
-				db.close();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-
-		return true;
-	}
-
 }

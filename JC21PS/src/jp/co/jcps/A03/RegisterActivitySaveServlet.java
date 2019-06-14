@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import jp.co.jcps.Bean.MessageBean;
 import jp.co.jcps.Bean.RegisterActivityBean;
 import jp.co.jcps.Common.CommonCheck;
@@ -74,11 +76,12 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		paramList.add(startTime);
 		paramList.add(endTime);
 		paramList.add(request.getParameter("registActivityDescription"));
-		if(!request.getParameter("registMaxParticipant").isEmpty()) {
-			paramList.add(request.getParameter("registMaxParticipant"));
+		if(StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
+			paramList.add(request.getParameter(null));
 		}else {
-			paramList.add("-");
+			paramList.add(request.getParameter("registMaxParticipant"));
 		}
+
 
 
 		// SQLを実行し結果を取得
@@ -111,17 +114,31 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		Validation.checkRequired(request.getParameter("registActivityDate"), "活動日", msg);
 		Validation.checkRequired(request.getParameter("registActivityStartTime"), "活動時間(自）", msg);
 		Validation.checkRequired(request.getParameter("registActivityEndTime"), "活動時間(至）", msg);
+		Validation.checkRequired(request.getParameter("registActivityPlace"), "活動場所", msg);
 
 
 		// 桁数チェック
 		Validation.checkLegalLengthString(request.getParameter("registActivityName"), 30, "活動名", msg);
-		Validation.checkLegalLengthString(request.getParameter("registActivityDate"), 10, "活動日", msg);
-		if(request.getParameter("registActivityDescription") != null) {
+		Validation.checkLegalLengthString(request.getParameter("registActivityPlace"), 30, "活動場所", msg);
+		if(!StringUtils.isEmpty("registActivityDescription")) {
 			Validation.checkLegalLengthString(request.getParameter("registActivityDescription"), 400, "活動説明", msg);
 		}
 
 		// 型チェック
-		if(!request.getParameter("registMaxParticipant").isEmpty()) {
+		if(!StringUtils.isEmpty(request.getParameter("registActivityDate"))) {
+			// 活動日の型チェック
+			Validation.checkCorrectDate(request.getParameter("registActivityDate"),"活動日",msg);
+
+			// 活動日が翌日以降かのチェック
+			Validation.checkIsAfterTommorowDate(request.getParameter("registActivityDate"),"活動日",msg);
+		}
+
+		if(!StringUtils.isEmpty(request.getParameter("registActivityStartTime")) && !StringUtils.isEmpty(request.getParameter("registActivityEndTime"))) {
+			// 活動日の型チェック
+			Validation.checkCorrectActivityTime(request.getParameter("registActivityStartTime"), request.getParameter("registActivityEndTime"), msg);
+		}
+		if(!StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
+			// 募集人数の型チェック
 			Validation.checkCorrectRangeNumber(request.getParameter("registMaxParticipant"), 1, 99, "募集人数", msg);
 		}
 
