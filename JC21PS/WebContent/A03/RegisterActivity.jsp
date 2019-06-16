@@ -66,6 +66,7 @@
   	</table>
   	<div align="center">
   	<input type='submit' value='登録' onclick='return confirm("活動を登録しますか？");' class="btn btn-primary"/>
+  	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
 </form>
 </body>

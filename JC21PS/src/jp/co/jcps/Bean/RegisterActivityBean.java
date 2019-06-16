@@ -37,13 +37,13 @@ public class RegisterActivityBean implements Serializable {
 	 *
 	 */
 	public RegisterActivityBean() {
-		this.clubName = null;
-		this.activityName = null;
-		this.activityPlace = null;
-		this.activityStartTime = null;
-		this.activityEndTime = null;
-		this.activityDescription = null;
-		this.maxParticipant = null;
+		this.clubName = "";
+		this.activityName = "";
+		this.activityPlace = "";
+		this.activityStartTime = "";
+		this.activityEndTime = "";
+		this.activityDescription = "";
+		this.maxParticipant = "";
 	}
 
 	/**

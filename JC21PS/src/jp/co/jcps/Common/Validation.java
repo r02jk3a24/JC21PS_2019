@@ -148,7 +148,7 @@ public class Validation {
 	 * @return
 	 */
 	public static MessageBean checkIsAfterTommorowDate(String date, String field, MessageBean messageBean) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar now = Calendar.getInstance();
 		String today = format.format(now.getTime());
 		if(date.compareTo(today) > 0) {
