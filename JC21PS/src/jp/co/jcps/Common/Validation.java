@@ -49,7 +49,7 @@ public class Validation {
 		if(str == null) {
 			return messageBean;
 		}
-		if(str.length() <= maxLength) {
+		if(str.length() < maxLength) {
 			return messageBean;
 		}else {
 			messageBean.addMessageList(field + "は" + maxLength + "文字以下で入力してください。" );

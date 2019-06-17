@@ -119,7 +119,7 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		// 桁数チェック
 		Validation.checkLegalLengthString(request.getParameter("registActivityPlace"), 30, "活動場所", msg);
 		if(!StringUtils.isEmpty("registActivityDescription")) {
-			Validation.checkLegalLengthString(request.getParameter("registActivityDescription"), 399, "活動説明", msg);
+			Validation.checkLegalLengthString(request.getParameter("registActivityDescription"), 400, "活動説明", msg);
 		}
 
 		// 型チェック
