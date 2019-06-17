@@ -144,17 +144,21 @@ public class TopControllerServlet extends HttpServlet {
 
 	/**
 	 * 過半数を超えているかを判定する
+	 * @param participant 参加人数
+	 * @param maxParticipant 募集人数
 	 */
 	private boolean isMajority(Integer participant, String maxParticipant) {
+		// 空もしくはnullの場合はfalseを返却
 		if(StringUtils.isEmpty(maxParticipant)) {
 			return false;
 		}
 		BigDecimal num = BigDecimal.valueOf(participant);
 		BigDecimal max = BigDecimal.valueOf(Integer.parseInt(maxParticipant));
 
-		// 閾値
+		// 過半数判定の閾値
 		BigDecimal threshold = new BigDecimal(0.5);
 
+		// 参加人数÷募集人数を計算し、過半数を超えている場合はtrueを返却
 		if(num.divide(max,2,BigDecimal.ROUND_HALF_DOWN).compareTo(threshold) >= 0) {
 			return true;
 		}else {

@@ -40,18 +40,18 @@
   			<td colspan="3"><%= bean.getClubName() %></td>
   		</tr>
   		<tr>
-  			<th colspan="1">活動名</th>
+  			<th colspan="1">*&nbsp;活動名</th>
   			<td colspan="3"><input type="text" name="registActivityName"  maxlength="30" value=<%= bean.getActivityName()%>></td>
   		</tr>
   		<tr>
-  			<th colspan="1">活動日</th>
+  			<th colspan="1">*&nbsp;活動日</th>
   			<td colspan="1"><input type="date" name="registActivityDate"  maxlength="10" value=<%= bean.getActivityDate()%>></td>
-  			<th colspan="1">活動時間</th>
+  			<th colspan="1">*&nbsp;活動時間</th>
   			<td colspan="1"><input type="time" name="registActivityStartTime" value=<%= bean.getActivityStartTime()%>>～
   			<input type="time" name="registActivityEndTime" value=<%= bean.getActivityEndTime()%>></td>
   		</tr>
   		<tr>
-  			<th colspan="1">活動場所</th>
+  			<th colspan="1">*&nbsp;活動場所</th>
   			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="30" value=<%= bean.getActivityPlace()%>></td>
   		</tr>
   		<tr>
