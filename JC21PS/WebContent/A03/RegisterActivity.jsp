@@ -36,7 +36,7 @@
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
-  			<th colspan="1">部活名</th>
+  			<th colspan="1">&nbsp;&nbsp;部活名</th>
   			<td colspan="3"><%= bean.getClubName() %></td>
   		</tr>
   		<tr>
@@ -55,11 +55,11 @@
   			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="30" value=<%= bean.getActivityPlace()%>></td>
   		</tr>
   		<tr>
-  			<th colspan="1">募集人数</th>
+  			<th colspan="1">&nbsp;&nbsp;募集人数</th>
   			<td colspan="3"><input type="text" name="registMaxParticipant" maxlength="2" value=<%= bean.getMaxParticipant()%>></td>
   		</tr>
   		<tr>
-  			<th colspan="1">活動説明</th>
+  			<th colspan="1">&nbsp;&nbsp;活動説明</th>
   			<td colspan="3"><textarea name="registActivityDescription"  rows="5" cols="80" maxlength="400"><%= bean.getActivityDescription()%></textarea></td>
   		</tr>
   		</tbody>

@@ -139,7 +139,7 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		}
 		if(!StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
 			// 募集人数の型チェック
-			Validation.checkCorrectRangeNumber(request.getParameter("registMaxParticipant"), 1, 99, "募集人数", msg);
+			Validation.checkCorrectRangeNumber(request.getParameter("registMaxParticipant"), 0, 99, "募集人数", msg);
 		}
 
 		return msg;
