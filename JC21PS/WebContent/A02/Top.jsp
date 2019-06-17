@@ -35,10 +35,10 @@
   <%
  	for(int i = 0; i < bean.getClubActivityList().size(); i++){
  		out.println("<h2>" + bean.getClubNameList().get(i) + "</h2>");
- 		out.println("<table class='table table-bordered'>");
+ 		out.println("<table class='table table-bordered' style='table-layout:fixed'>");
  		out.println("<tbody>");
  		out.println("<tr>");
- 		out.println("<th rowspan=3 colspan=1>No</th>");
+ 		out.println("<th rowspan=3 colspan=1 style='width:10%'>No</th>");
  		out.println("<th colspan=4>活動名</th>");
  		out.println("<th rowspan=3 colspan=1>参加ステータス</th>");
  		out.println("</tr>");
