@@ -52,7 +52,7 @@
   		</tr>
   		<tr>
   			<th colspan="1">*&nbsp;活動場所</th>
-  			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="30" value=<%= bean.getActivityPlace()%>></td>
+  			<td colspan="3"><input type="text" name="registActivityPlace" maxlength="40" value=<%= bean.getActivityPlace()%>></td>
   		</tr>
   		<tr>
   			<th colspan="1">&nbsp;&nbsp;募集人数</th>

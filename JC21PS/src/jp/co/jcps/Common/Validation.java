@@ -151,7 +151,7 @@ public class Validation {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar now = Calendar.getInstance();
 		String today = format.format(now.getTime());
-		if(date.compareTo(today) > 0) {
+		if(date.compareTo(today) >= 0) {
 			// 日付が翌日以降ならエラーなし
 			return messageBean;
 		} else {
