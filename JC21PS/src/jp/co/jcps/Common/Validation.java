@@ -110,7 +110,7 @@ public class Validation {
 				return messageBean;
 			}
 		} catch(NumberFormatException e) {
-			// 範囲外の数字の場合はエラーメッセージを追加して返却
+			// 数値以外の場合はエラーメッセージを追加して返却
 			messageBean.addMessageList(field + "は" + min + "以上" + max + "以下で入力してください。");
 			return messageBean;
 		}
