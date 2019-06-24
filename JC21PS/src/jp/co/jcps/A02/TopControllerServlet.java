@@ -53,7 +53,7 @@ public class TopControllerServlet extends HttpServlet {
 		paramList.add(userId);
 
 		// SQLを設定
-		String sql = "SELECT activity.*,club.club_id,club.club_name,count.count,isnull(participant.user_id) != 1 as participation_flg FROM trn_activity as activity INNER JOIN mst_club as club USING(club_id) INNER JOIN trn_club_member as member ON club.club_id = member.club_id LEFT JOIN (SELECT activity_id,count(*) as count FROM trn_participant GROUP BY activity_id) as count ON count.activity_id = activity.activity_id LEFT JOIN trn_participant as participant ON participant.user_id = ? AND participant.activity_id = activity.activity_id WHERE member.user_id = ? ORDER BY club.club_id ASC,activity.activity_start_time ASC;";
+		String sql = "SELECT activity.*,club.club_id,club.club_name,count.count,isnull(participant.user_id) != 1 as participation_flg FROM trn_activity as activity INNER JOIN mst_club as club USING(club_id) INNER JOIN trn_club_member as member ON club.club_id = member.club_id LEFT JOIN (SELECT activity_id,count(*) as count FROM trn_participant GROUP BY activity_id) as count ON count.activity_id = activity.activity_id LEFT JOIN trn_participant as participant ON participant.user_id = ? AND participant.activity_id = activity.activity_id WHERE member.user_id = ? AND activity.activity_start_time > now() ORDER BY club.club_id ASC,activity.activity_start_time ASC;";
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -144,17 +144,21 @@ public class TopControllerServlet extends HttpServlet {
 
 	/**
 	 * 過半数を超えているかを判定する
+	 * @param participant 参加人数
+	 * @param maxParticipant 募集人数
 	 */
 	private boolean isMajority(Integer participant, String maxParticipant) {
+		// 空もしくはnullの場合はfalseを返却
 		if(StringUtils.isEmpty(maxParticipant)) {
 			return false;
 		}
 		BigDecimal num = BigDecimal.valueOf(participant);
 		BigDecimal max = BigDecimal.valueOf(Integer.parseInt(maxParticipant));
 
-		// 閾値
+		// 過半数判定の閾値
 		BigDecimal threshold = new BigDecimal(0.5);
 
+		// 参加人数÷募集人数を計算し、過半数を超えている場合はtrueを返却
 		if(num.divide(max,2,BigDecimal.ROUND_HALF_DOWN).compareTo(threshold) >= 0) {
 			return true;
 		}else {

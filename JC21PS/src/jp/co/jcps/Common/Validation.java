@@ -49,7 +49,7 @@ public class Validation {
 		if(str == null) {
 			return messageBean;
 		}
-		if(str.length() <= maxLength) {
+		if(str.length() < maxLength) {
 			return messageBean;
 		}else {
 			messageBean.addMessageList(field + "は" + maxLength + "文字以下で入力してください。" );
@@ -110,7 +110,7 @@ public class Validation {
 				return messageBean;
 			}
 		} catch(NumberFormatException e) {
-			// 範囲外の数字の場合はエラーメッセージを追加して返却
+			// 数値以外の場合はエラーメッセージを追加して返却
 			messageBean.addMessageList(field + "は" + min + "以上" + max + "以下で入力してください。");
 			return messageBean;
 		}
@@ -151,7 +151,7 @@ public class Validation {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar now = Calendar.getInstance();
 		String today = format.format(now.getTime());
-		if(date.compareTo(today) > 0) {
+		if(date.compareTo(today) >= 0) {
 			// 日付が翌日以降ならエラーなし
 			return messageBean;
 		} else {

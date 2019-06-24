@@ -114,11 +114,9 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		Validation.checkRequired(request.getParameter("registActivityDate"), "活動日", msg);
 		Validation.checkRequired(request.getParameter("registActivityStartTime"), "活動時間(自）", msg);
 		Validation.checkRequired(request.getParameter("registActivityEndTime"), "活動時間(至）", msg);
-		Validation.checkRequired(request.getParameter("registActivityPlace"), "活動場所", msg);
 
 
 		// 桁数チェック
-		Validation.checkLegalLengthString(request.getParameter("registActivityName"), 30, "活動名", msg);
 		Validation.checkLegalLengthString(request.getParameter("registActivityPlace"), 30, "活動場所", msg);
 		if(!StringUtils.isEmpty("registActivityDescription")) {
 			Validation.checkLegalLengthString(request.getParameter("registActivityDescription"), 400, "活動説明", msg);
@@ -139,7 +137,7 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		}
 		if(!StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
 			// 募集人数の型チェック
-			Validation.checkCorrectRangeNumber(request.getParameter("registMaxParticipant"), 1, 99, "募集人数", msg);
+			Validation.checkCorrectRangeNumber(request.getParameter("registMaxParticipant"), 0, 99, "募集人数", msg);
 		}
 
 		return msg;
