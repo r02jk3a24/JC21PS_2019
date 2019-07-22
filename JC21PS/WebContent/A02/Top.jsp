@@ -55,7 +55,7 @@
  			int no = j+1;
  			out.println("<tr>");
  			out.println("<td rowspan=3 colspan=1>" + no + "</td>");
-     		out.println("<td colspan=4>" + bean.getClubActivityList().get(i).get(j).getActivityName() + "</td>");
+     		out.println("<td colspan=4><a href='/JC21PS/ParticipantListController?activityId=" + bean.getClubActivityList().get(i).get(j).getActivityId() +"'>" + bean.getClubActivityList().get(i).get(j).getActivityName() + "</td>");
      		if(bean.getClubActivityList().get(i).get(j).getIsParticipationFlg()){
      			out.println("<td rowspan=3>参加</br></br></br></br><button type='submit' name='activityId' value='" + bean.getClubActivityList().get(i).get(j).getActivityId() + "'/>不参加にする</td>");
 
