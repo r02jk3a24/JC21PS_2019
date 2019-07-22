@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
-<jsp:useBean id="bean" class="jp.co.jcps.DisplayBean.ParticipantListBean" scope="request" />
+<jsp:useBean id="bean" class="jp.co.jcps.DisplayBean.ClubInfoRegisterBean" scope="request" />
 
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +22,7 @@
 </head>
 <body>
   <div class="container"></div>
-  <h2 class="teacher-header">活動登録</h2>
+  <h2 class="teacher-header">部活情報登録</h2>
   <jsp:include page="/A00/Header.jsp"></jsp:include>
 
   <%
@@ -31,24 +31,22 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
+  <form action="/JC21PS/RegisterActivitySave" method="POST">
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
-  			<th colspan="1">活動名</th>
-  			<td colspan="3"><%= bean.getActivityName() %></td>
+  			<th colspan="1">部活名</th>
+  			<td colspan="3"><%= bean.getClubName() %></td>
   		</tr>
   		<tr>
-  			<th colspan="4">参加者一覧</th>
-  		</tr>
-  		<%  for(int i = 0; i < bean.getParticipantList().size() ; i++) {  %>
-  		<tr>
-  			<td colspan="4"><%= bean.getParticipantList().get(i)%></td>
-  		</tr>
-  		<% } %>
+  			<th colspan="1">部活説明</th>
+  			<td colspan ="3"><textarea name="registActivityDescription"  rows="5" cols="80" maxlength="400"><%= bean.getClubDescription() %></textarea></td>
   		</tbody>
   	</table>
   	<div align="center">
+  	<input type='submit' value='登録' onclick='return confirm("登録しますか？");' class="btn btn-primary"/>
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
+</form>
 </body>
 </html>
