@@ -1,7 +1,6 @@
 package jp.co.jcps.A07;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.jcps.Bean.MessageBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
+import jp.co.jcps.Common.Validation;
 import jp.co.jcps.DisplayBean.ClubInfoRegisterBean;
 
 /**
@@ -39,45 +40,44 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
+		//リクエストのエンコードを指定
+		request.setCharacterEncoding("UTF-8");
+
+		// 入力値チェック
+		MessageBean msg = new MessageBean();
+		Validation.checkLegalLengthString(request.getParameter("registClubDescription"), 400, "部活説明", msg);
+
+		// エラーがある場合は入力値を復元してエラーを表示
+		if(msg.getMessageList().size() != 0) {
+			ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
+			bean.setClubName(request.getParameter("registClubName"));
+			bean.setClubDescription(request.getParameter("registClubDescription"));
+
+			request.setAttribute("bean", bean);
+			request.setAttribute("messageBean", msg);
+
+			request.getRequestDispatcher("A07/ClubInfoRegister.jsp").forward(request, response);
+		}
+
 		// セッションからログイン中のユーザーIDを取得する
 		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
-
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
+		paramList.add(request.getParameter("registClubDescription"));
 		paramList.add(leaderClubId);
 
 		// SQLを設定
-		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ?;";
+		String sql = "UPDATE mst_club SET club_description=?  WHERE club_id=?;";
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = db.executeSelectQuery(sql, paramList);
+		db.executeInsertUpdateQuery(sql, paramList);
 
-		// 部活情報登録画面のBeanを初期化
-		ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
+		// msgに登録完了メッセージをセット
+		msg.addMessageList("部活情報を登録しました。");
+		request.setAttribute("messageBean", msg);
 
-		try {
-			// beanに部活名をセット
-			while(rs.next()) {
-				bean.setClubName(rs.getString("club_name"));
-				bean.setClubDescription(rs.getString("club_description"));
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new ServletException(e);
-		} finally {
-			try {
-				db.close();
-			} catch (Exception e) {
-			}
-		}
-
-		// beanをリクエストにセット
-		request.setAttribute("bean", bean);
-
-
-		// 部活情報登録画面を表示
-		request.getRequestDispatcher("A07/ClubInfoRegister.jsp").forward(request, response);
+		// 一覧画面に遷移
+		request.getRequestDispatcher("/TopController").forward(request, response);
 	}
-
 }

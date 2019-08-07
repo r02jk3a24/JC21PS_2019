@@ -89,7 +89,8 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		db.executeInsertUpdateQuery(sql, paramList);
 
 		// msgに登録完了メッセージをセット
-		msg.addMessageList("登録しました。");
+		msg.addMessageList("新規活動を登録しました。");
+		request.setAttribute("messageBean", msg);
 
 		// TOP画面の呼び出し
 		request.getRequestDispatcher("/TopController").forward(request, response);

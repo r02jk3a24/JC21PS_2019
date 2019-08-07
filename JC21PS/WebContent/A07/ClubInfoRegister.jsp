@@ -31,7 +31,8 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
-  <form action="/JC21PS/RegisterActivitySave" method="POST">
+  <form action="/JC21PS/ClubInfoRegisterSave" method="POST">
+  <input type="hidden" name=registClubName value=<%= bean.getClubName() %>>
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
@@ -40,7 +41,7 @@
   		</tr>
   		<tr>
   			<th colspan="1">部活説明</th>
-  			<td colspan ="3"><textarea name="registActivityDescription"  rows="5" cols="80" maxlength="400"><%= bean.getClubDescription() %></textarea></td>
+  			<td colspan ="3"><textarea name="registClubDescription"  rows="5" cols="80" maxlength="400"><%= bean.getClubDescription() %></textarea></td>
   		</tbody>
   	</table>
   	<div align="center">
