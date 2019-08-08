@@ -1,4 +1,4 @@
-package jp.co.jcps.DisplayBean;
+package jp.co.jcps.A04;
 
 import java.io.Serializable;
 import java.util.ArrayList;

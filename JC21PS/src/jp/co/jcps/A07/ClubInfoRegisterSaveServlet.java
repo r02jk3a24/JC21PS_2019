@@ -14,7 +14,6 @@ import jp.co.jcps.Bean.MessageBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
 import jp.co.jcps.Common.Validation;
-import jp.co.jcps.DisplayBean.ClubInfoRegisterBean;
 
 /**
  * 部活情報登録画面のコントローラー

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
-import jp.co.jcps.DisplayBean.ClubInfoRegisterBean;
 
 /**
  * 部活情報登録画面のコントローラー

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import jp.co.jcps.Bean.TrnJoinRequestBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
-import jp.co.jcps.DisplayBean.JoinRequestBean;
 
 /**
  * 部員登録申請画面のコントローラー

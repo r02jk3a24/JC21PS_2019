@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="jp.co.jcps.DisplayBean.JoinRequestBean"%>
+    pageEncoding="UTF-8" import="jp.co.jcps.A05.JoinRequestBean"%>
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
-<jsp:useBean id="bean" class="jp.co.jcps.DisplayBean.JoinRequestBean" scope="request" />
+<jsp:useBean id="bean" class="jp.co.jcps.A05.JoinRequestBean" scope="request" />
 
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

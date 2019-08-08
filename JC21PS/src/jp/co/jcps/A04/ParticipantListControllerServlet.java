@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
-import jp.co.jcps.DisplayBean.ParticipantListBean;
 
 /**
  * 参加者一覧画面のコントローラー
