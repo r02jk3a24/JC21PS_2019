@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.co.jcps.Bean.TrnJoinRequestBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
 
@@ -61,11 +60,9 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		try {
 			// beanに部活名をセット
 			while (rs.next()) {
-				TrnJoinRequestBean data = new TrnJoinRequestBean();
-				data.setClubId(rs.getString("club_id"));
-				data.setClubName(rs.getString("club_name"));
-				data.setClubDescription(rs.getString("club_description"));
-				bean.addJoinRequestList(data);
+				bean.addClubIdList(rs.getString("club_id"));
+				bean.addClubNameList(rs.getString("club_name"));
+				bean.addClubDescriptionList(rs.getString("club_description"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

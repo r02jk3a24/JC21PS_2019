@@ -39,13 +39,13 @@
   		<tr>
   			<th colspan="2">部活説明</th>
   		</tr>
-  		<% for(int i = 0; i < bean.getJoinRequestList().size(); i++){ %>
+  		<% for(int i = 0; i < bean.getClubIdList().size(); i++){ %>
   		<tr>
-  			<td colspan="1"><%= bean.getJoinRequestList().get(i).getClubName() %></td>
-  			<td colspan="1"><button type='submit' name='registClubId'  value='<%= bean.getJoinRequestList().get(i).getClubId() %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
+  			<td colspan="1"><%= bean.getClubNameList().get(i) %></td>
+  			<td colspan="1"><button type='submit' name='registClubId'  value='<%= bean.getClubIdList().get(i) %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
   		</tr>
   		<tr>
-  			<td colspan ="2"><%= bean.getJoinRequestList().get(i).getClubDescription() %></td>
+  			<td colspan ="2"><%= bean.getClubDescriptionList().get(i) %></td>
   		<%} %>
   		</tbody>
   	</table>
