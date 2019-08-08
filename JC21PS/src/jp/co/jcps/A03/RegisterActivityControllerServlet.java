@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.co.jcps.Bean.RegisterActivityBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
 

@@ -1,8 +1,10 @@
-package jp.co.jcps.Bean;
+package jp.co.jcps.A02;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.co.jcps.Bean.ActivityBean;
 
 /**
  * Top画面のBean
