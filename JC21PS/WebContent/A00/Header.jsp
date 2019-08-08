@@ -16,7 +16,7 @@
   	<input type="button" onclick="location.href='/JC21PS/ClubInfoRegisterController'" value="部活情報登録"/>
   	<input type="button" onclick="location.href=/JC21PS/RegisterActivity" value="部員登録承認"/>
   	<%} %>
-  	<input type="button" onclick="location.href=/JC21PS/RegisterActivity" value="部員登録申請"/>
+  	<input type="button" onclick="location.href='/JC21PS/JoinRequestController'" value="部員登録申請"/>
   </div>
   <br/>
 </body>

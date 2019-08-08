@@ -1,12 +1,14 @@
-package jp.co.jcps.DisplayBean;
+package jp.co.jcps.Bean;
 
 import java.io.Serializable;
 
 /**
- * 部活情報登録画面のBean
+ * trn_join_requestテーブルのBean
  */
-public class ClubInfoRegisterBean implements Serializable {
+public class TrnJoinRequestBean implements Serializable {
 
+	// 部活ID
+	private String clubId;
 	// 部活名
 	private String clubName;
 	// 部活説明
@@ -16,9 +18,25 @@ public class ClubInfoRegisterBean implements Serializable {
 	 * コンストラクタ
 	 *
 	 */
-	public ClubInfoRegisterBean() {
+	public TrnJoinRequestBean() {
+		this.clubName = "";
 		this.clubName = "";
 		this.clubDescription = "";
+
+	}
+
+	/**
+	 * @return clubId
+	 */
+	public String getClubId() {
+		return clubId;
+	}
+
+	/**
+	 * @param clubId セットする clubId
+	 */
+	public void setClubId(String clubId) {
+		this.clubId = clubId;
 	}
 
 	/**

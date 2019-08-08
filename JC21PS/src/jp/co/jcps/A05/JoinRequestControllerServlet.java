@@ -1,4 +1,4 @@
-package jp.co.jcps.A07;
+package jp.co.jcps.A05;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -11,21 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.jcps.Bean.TrnJoinRequestBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
-import jp.co.jcps.DisplayBean.ClubInfoRegisterBean;
+import jp.co.jcps.DisplayBean.JoinRequestBean;
 
 /**
- * 部活情報登録画面のコントローラー
+ * 部員登録申請画面のコントローラー
  */
-@WebServlet("/ClubInfoRegisterController")
-public class ClubInfoRegisterControllerServlet extends HttpServlet {
+@WebServlet("/JoinRequestController")
+public class JoinRequestControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * コンストラクタ
 	 */
-	public ClubInfoRegisterControllerServlet() {
+	public JoinRequestControllerServlet() {
 		super();
 	}
 
@@ -39,28 +40,32 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
-		// セッションからログイン中のユーザーの部長クラブIDを取得する
-		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
+		// セッションからログイン中のユーザーIDを取得する
+		String userId = (String)request.getSession().getAttribute("userId");
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add(leaderClubId);
+		paramList.add(userId);
+		paramList.add(userId);
 
 		// SQLを設定
-		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ?;";
+		String sql = "SELECT * FROM mst_club WHERE club_id NOT IN (SELECT club_id FROM trn_join_request WHERE user_id = ?) AND club_id NOT IN (SELECT club_id FROM trn_club_member WHERE user_id = ?);";
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
 		ResultSet rs = db.executeSelectQuery(sql, paramList);
 
-		// 部活情報登録画面のBeanを初期化
-		ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
+		// 部員登録申請画面に表示するbeanを初期化
+		JoinRequestBean bean = new JoinRequestBean();
 
 		try {
 			// beanに部活名をセット
 			while(rs.next()) {
-				bean.setClubName(rs.getString("club_name"));
-				bean.setClubDescription(rs.getString("club_description"));
+				TrnJoinRequestBean data = new TrnJoinRequestBean();
+				data.setClubId(rs.getString("club_id"));
+				data.setClubName(rs.getString("club_name"));
+				data.setClubDescription(rs.getString("club_description"));
+				bean.addJoinRequestList(data);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -77,7 +82,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 
 		// 部活情報登録画面を表示
-		request.getRequestDispatcher("A07/ClubInfoRegister.jsp").forward(request, response);
+		request.getRequestDispatcher("A05/JoinRequest.jsp").forward(request, response);
 	}
 
 }
