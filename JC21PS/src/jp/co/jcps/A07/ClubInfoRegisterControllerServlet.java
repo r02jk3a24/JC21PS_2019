@@ -31,15 +31,16 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 	/**
 	 * GETメソッドでリクエストされた場合の処理
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
+		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
-		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
+		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -57,7 +58,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		try {
 			// beanに部活名をセット
-			while(rs.next()) {
+			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));
 				bean.setClubDescription(rs.getString("club_description"));
 			}
@@ -73,7 +74,6 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		// beanをリクエストにセット
 		request.setAttribute("bean", bean);
-
 
 		// 部活情報登録画面を表示
 		request.getRequestDispatcher("A07/ClubInfoRegister.jsp").forward(request, response);

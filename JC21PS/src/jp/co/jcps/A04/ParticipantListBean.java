@@ -24,14 +24,12 @@ public class ParticipantListBean implements Serializable {
 
 	}
 
-
 	/**
 	 * @return activityName
 	 */
 	public String getActivityName() {
 		return activityName;
 	}
-
 
 	/**
 	 * @param activityName セットする activityName
@@ -47,14 +45,12 @@ public class ParticipantListBean implements Serializable {
 		return participantList;
 	}
 
-
 	/**
 	 * @param participantList セットする participantList
 	 */
 	public void setParticipantList(List<String> participantList) {
 		this.participantList = participantList;
 	}
-
 
 	/**
 	 * @param participantList に要素を追加する participnat

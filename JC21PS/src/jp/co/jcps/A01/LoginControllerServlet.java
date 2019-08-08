@@ -35,7 +35,8 @@ public class LoginControllerServlet extends HttpServlet {
 	/**
 	 * GETメソッドでリクエストされた場合の処理（初期表示時）
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// ログイン画面を呼び出し
 		request.getRequestDispatcher("A01/Login.jsp").forward(request, response);
 
@@ -44,7 +45,8 @@ public class LoginControllerServlet extends HttpServlet {
 	/**
 	 * POSTメソッドでリクエストされた場合の処理
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// パラメータを初期化
 		String loginName = request.getParameter("loginName");
 		String password = request.getParameter("password");
@@ -60,7 +62,7 @@ public class LoginControllerServlet extends HttpServlet {
 		Validation.checkRequired(loginName, "ログイン名", messageBean);
 		Validation.checkRequired(password, "パスワード", messageBean);
 
-		if(messageBean.getMessageList().size() != 0) {
+		if (messageBean.getMessageList().size() != 0) {
 			// 入力値チェックでエラーがある場合
 			request.setAttribute("messageBean", messageBean);
 			// ログイン画面に遷移
@@ -80,7 +82,8 @@ public class LoginControllerServlet extends HttpServlet {
 			con = ds.getConnection();
 
 			// SQLの実行
-			String sql = "SELECT user.user_id,member.club_id FROM mst_user user LEFT JOIN trn_club_member member ON user.user_id = member.user_id AND member.leader_flg = 1 WHERE user.login_name = '" +  loginName + "'AND user.password = '" + password + "';";
+			String sql = "SELECT user.user_id,member.club_id FROM mst_user user LEFT JOIN trn_club_member member ON user.user_id = member.user_id AND member.leader_flg = 1 WHERE user.login_name = '"
+					+ loginName + "'AND user.password = '" + password + "';";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -88,7 +91,7 @@ public class LoginControllerServlet extends HttpServlet {
 			rs.first();
 
 			// ログイン情報が取得できなかった場合はエラー
-			if(rs.getRow() == 0) {
+			if (rs.getRow() == 0) {
 				messageBean.addMessageList("ログイン名もしくはパスワードが間違っています。");
 				request.setAttribute("messageBean", messageBean);
 				// ログイン画面に遷移
@@ -96,7 +99,7 @@ public class LoginControllerServlet extends HttpServlet {
 			}
 
 			// Viewへ引き渡す値を設定
-			if(rs.getString("user_id") != null) {
+			if (rs.getString("user_id") != null) {
 				// セッションを開始
 				HttpSession session = request.getSession(true);
 				// ログイン情報をセッションに保持

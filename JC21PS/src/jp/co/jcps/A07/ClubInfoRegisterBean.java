@@ -49,5 +49,4 @@ public class ClubInfoRegisterBean implements Serializable {
 		this.clubDescription = clubDescription;
 	}
 
-
 }

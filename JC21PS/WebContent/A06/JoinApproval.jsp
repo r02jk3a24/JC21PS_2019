@@ -34,12 +34,12 @@
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
-  			<th>部員登録申請者</th>
-  			<th></th>
+  			<th colspan="3">部員登録申請者</th>
+
   		</tr>
   		<% for(int i = 0; i < bean.getUserIdList().size(); i++){ %>
   		<tr>
-  			<td><%= bean.getUserIdList().get(i) %></td>
+  			<td><%= bean.getUserNameList().get(i) %></td>
   			<td><input type="button"  value="承認" onclick="joinApproval('<%= bean.getUserIdList().get(i) %>')"/></td>
   			<td><input type="button"  value="否認" onclick="joinDisapproval('<%= bean.getUserIdList().get(i) %>')"/></td>
   		</tr>

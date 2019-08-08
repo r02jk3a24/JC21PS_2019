@@ -31,9 +31,10 @@ public class TopSaveServlet extends HttpServlet {
 	/**
 	 * POSTでリクエストされた場合の処理
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
+		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
@@ -49,7 +50,6 @@ public class TopSaveServlet extends HttpServlet {
 		paramList.add(updateActivityId);
 		paramList.add(userId);
 
-
 		// SQLを設定
 		String sql = "SELECT * FROM trn_participant WHERE activity_id = ? AND user_id = ?; ";
 
@@ -57,13 +57,12 @@ public class TopSaveServlet extends HttpServlet {
 		DBConnection db = new DBConnection();
 		ResultSet rs = db.executeSelectQuery(sql, paramList);
 
-
 		try {
 			// 参加者データの有無をチェック
-			if(rs.next()) {
+			if (rs.next()) {
 				// データがない場合はinsert(参加にする）
 				deleteTrnParticipant(paramList);
-			}else {
+			} else {
 				// データがある場合はdelete(不参加にする）
 				insertTrnParticipant(paramList);
 			}

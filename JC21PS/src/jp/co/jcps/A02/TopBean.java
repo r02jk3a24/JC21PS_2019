@@ -62,6 +62,4 @@ public class TopBean implements Serializable {
 		this.clubActivityList = clubActivityList;
 	}
 
-
-
 }

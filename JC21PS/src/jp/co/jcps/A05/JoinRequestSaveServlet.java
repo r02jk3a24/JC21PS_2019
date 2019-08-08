@@ -27,13 +27,15 @@ public class JoinRequestSaveServlet extends HttpServlet {
 	public JoinRequestSaveServlet() {
 		super();
 	}
+
 	/**
 	 * POSTでリクエストされた場合
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
-		// セッションが切れてる場合はログイン画面に遷移
+		if (!CommonCheck.existSession(request)) {
+			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 		//リクエストのエンコードを指定
@@ -44,14 +46,12 @@ public class JoinRequestSaveServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add((String)request.getSession().getAttribute("userId"));
+		paramList.add((String) request.getSession().getAttribute("userId"));
 		paramList.add(request.getParameter("registClubId"));
-
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
 		db.executeInsertUpdateQuery(sql, paramList);
-
 
 		// msgに登録完了メッセージをセット
 		MessageBean msg = new MessageBean();

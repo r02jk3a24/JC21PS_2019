@@ -33,13 +33,15 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 	public RegisterActivitySaveServlet() {
 		super();
 	}
+
 	/**
 	 * POSTでリクエストされた場合
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
-		// セッションが切れてる場合はログイン画面に遷移
+		if (!CommonCheck.existSession(request)) {
+			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 		//リクエストのエンコードを指定
@@ -47,7 +49,7 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 
 		// 入力値チェック
 		MessageBean msg = checkValid(request);
-		if(msg.getMessageList().size() != 0) {
+		if (msg.getMessageList().size() != 0) {
 			//入力値が不正な場合はエラーメッセージを表示し、入力値を復元する
 			RegisterActivityBean bean = restoreInputValue(request);
 			request.setAttribute("bean", bean);
@@ -59,12 +61,13 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		}
 
 		// 登録用の開始時間と終了時間を成形する
-		String startTime = request.getParameter("registActivityDate") + " " + request.getParameter("registActivityStartTime");
-		String endTime = request.getParameter("registActivityDate") + " " + request.getParameter("registActivityEndTime");
+		String startTime = request.getParameter("registActivityDate") + " "
+				+ request.getParameter("registActivityStartTime");
+		String endTime = request.getParameter("registActivityDate") + " "
+				+ request.getParameter("registActivityEndTime");
 
 		// SQLを宣言
 		String sql = "INSERT INTO trn_activity (activity_id, club_id, activity_name, activity_place, activity_start_time, activity_end_time, activity_description, max_participant) VALUES (?,?,?,?,?,?,?,?);";
-
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -75,13 +78,11 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		paramList.add(startTime);
 		paramList.add(endTime);
 		paramList.add(request.getParameter("registActivityDescription"));
-		if(StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
+		if (StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
 			paramList.add(request.getParameter(null));
-		}else {
+		} else {
 			paramList.add(request.getParameter("registMaxParticipant"));
 		}
-
-
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -94,9 +95,7 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		// TOP画面の呼び出し
 		request.getRequestDispatcher("/TopController").forward(request, response);
 
-
 	}
-
 
 	/**
 	 * 活動登録画面の入力値チェック
@@ -116,35 +115,35 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		Validation.checkRequired(request.getParameter("registActivityEndTime"), "活動時間(至）", msg);
 		Validation.checkRequired(request.getParameter("registActivityPlace"), "活動場所", msg);
 
-
 		// 桁数チェック
 		Validation.checkLegalLengthString(request.getParameter("registActivityName"), 30, "活動名", msg);
 		Validation.checkLegalLengthString(request.getParameter("registActivityPlace"), 30, "活動場所", msg);
-		if(!StringUtils.isEmpty("registActivityDescription")) {
+		if (!StringUtils.isEmpty("registActivityDescription")) {
 			Validation.checkLegalLengthString(request.getParameter("registActivityDescription"), 400, "活動説明", msg);
 		}
 
 		// 型チェック
-		if(!StringUtils.isEmpty(request.getParameter("registActivityDate"))) {
+		if (!StringUtils.isEmpty(request.getParameter("registActivityDate"))) {
 			// 活動日の型チェック
-			Validation.checkCorrectDate(request.getParameter("registActivityDate"),"活動日",msg);
+			Validation.checkCorrectDate(request.getParameter("registActivityDate"), "活動日", msg);
 
 			// 活動日が翌日以降かのチェック
-			Validation.checkIsAfterTommorowDate(request.getParameter("registActivityDate"),"活動日",msg);
+			Validation.checkIsAfterTommorowDate(request.getParameter("registActivityDate"), "活動日", msg);
 		}
 
-		if(!StringUtils.isEmpty(request.getParameter("registActivityStartTime")) && !StringUtils.isEmpty(request.getParameter("registActivityEndTime"))) {
+		if (!StringUtils.isEmpty(request.getParameter("registActivityStartTime"))
+				&& !StringUtils.isEmpty(request.getParameter("registActivityEndTime"))) {
 			// 活動日の型チェック
-			Validation.checkCorrectActivityTime(request.getParameter("registActivityStartTime"), request.getParameter("registActivityEndTime"), msg);
+			Validation.checkCorrectActivityTime(request.getParameter("registActivityStartTime"),
+					request.getParameter("registActivityEndTime"), msg);
 		}
-		if(!StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
+		if (!StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
 			// 募集人数の型チェック
 			Validation.checkCorrectRangeNumber(request.getParameter("registMaxParticipant"), 0, 99, "募集人数", msg);
 		}
 
 		return msg;
 	}
-
 
 	/**
 	 * シーケンスから次の活動IDを取得する
@@ -159,17 +158,17 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		ResultSet rs = db.executeSelectQuery(sql, new ArrayList<>());
 
 		try {
-			while(rs.next()) {
-				activityId = Const.ACTIVITY_ID_PREFIX + String.format("%07d",rs.getInt(1));
+			while (rs.next()) {
+				activityId = Const.ACTIVITY_ID_PREFIX + String.format("%07d", rs.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-				try {
-					db.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+		} finally {
+			try {
+				db.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return activityId;

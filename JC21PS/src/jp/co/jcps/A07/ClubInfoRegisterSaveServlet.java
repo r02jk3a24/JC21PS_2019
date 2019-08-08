@@ -32,9 +32,10 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 	/**
 	 * POSTメソッドでリクエストされた場合の処理
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
+		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
@@ -47,7 +48,7 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 		Validation.checkLegalLengthString(request.getParameter("registClubDescription"), 400, "部活説明", msg);
 
 		// エラーがある場合は入力値を復元してエラーを表示
-		if(msg.getMessageList().size() != 0) {
+		if (msg.getMessageList().size() != 0) {
 			ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
 			bean.setClubName(request.getParameter("registClubName"));
 			bean.setClubDescription(request.getParameter("registClubDescription"));
@@ -59,7 +60,7 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 		}
 
 		// セッションからログイン中のユーザーIDを取得する
-		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
+		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(request.getParameter("registClubDescription"));

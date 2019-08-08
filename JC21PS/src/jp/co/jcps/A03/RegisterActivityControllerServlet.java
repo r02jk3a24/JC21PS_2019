@@ -31,15 +31,16 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 	/**
 	 * GETメソッドでリクエストされた場合の処理
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
+		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
 		// セッションからログイン中のユーザーIDを取得する
-		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
+		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -57,7 +58,7 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 
 		try {
 			// beanに部活名をセット
-			while(rs.next()) {
+			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));
 			}
 		} catch (Exception e) {
@@ -72,7 +73,6 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 
 		// beanをリクエストにセット
 		request.setAttribute("bean", bean);
-
 
 		// 履修講義一覧画面を表示
 		request.getRequestDispatcher("A03/RegisterActivity.jsp").forward(request, response);

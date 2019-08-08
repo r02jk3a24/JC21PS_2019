@@ -32,15 +32,16 @@ public class JoinRequestControllerServlet extends HttpServlet {
 	/**
 	 * GETメソッドでリクエストされた場合の処理
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
+		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
 		// セッションからログイン中のユーザーIDを取得する
-		String userId = (String)request.getSession().getAttribute("userId");
+		String userId = (String) request.getSession().getAttribute("userId");
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -59,7 +60,7 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 		try {
 			// beanに部活名をセット
-			while(rs.next()) {
+			while (rs.next()) {
 				TrnJoinRequestBean data = new TrnJoinRequestBean();
 				data.setClubId(rs.getString("club_id"));
 				data.setClubName(rs.getString("club_name"));
@@ -78,7 +79,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 		// beanをリクエストにセット
 		request.setAttribute("bean", bean);
-
 
 		// 部活情報登録画面を表示
 		request.getRequestDispatcher("A05/JoinRequest.jsp").forward(request, response);

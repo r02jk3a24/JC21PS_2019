@@ -26,13 +26,15 @@ public class JoinRequestSaveServlet extends HttpServlet {
 	public JoinRequestSaveServlet() {
 		super();
 	}
+
 	/**
 	 * POSTでリクエストされた場合
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
-		// セッションが切れてる場合はログイン画面に遷移
+		if (!CommonCheck.existSession(request)) {
+			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 		//リクエストのエンコードを指定
@@ -42,22 +44,22 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		String registUserId = request.getParameter("userId");
 		boolean approval = request.getParameter("approval").equals("true");
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
-		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
+		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		// 承認する場合
-		if(approval) {
+		if (approval) {
 			// 部員テーブルに登録する
-			saveClubMember(leaderClubId,registUserId);
+			saveClubMember(leaderClubId, registUserId);
 		}
 
 		//承認する場合はも否認する場合も登録申請テーブルのデータを削除する
-		deleteJoinApproval(leaderClubId,registUserId);
+		deleteJoinApproval(leaderClubId, registUserId);
 
 		// TOP画面の呼び出し
 		request.getRequestDispatcher("/JoinApprovalController").forward(request, response);
 	}
 
-	private void saveClubMember(String registClubId,String registUserId) {
+	private void saveClubMember(String registClubId, String registUserId) {
 
 		//SQLを宣言
 		String sql = "INSERT INTO trn_club_member (club_id,user_id,leader_flg) VALUES (?,?,0);";
@@ -71,7 +73,7 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		db.executeInsertUpdateQuery(sql, paramList);
 	}
 
-	private void deleteJoinApproval(String registClubId,String registUserId) {
+	private void deleteJoinApproval(String registClubId, String registUserId) {
 
 		//SQLを宣言
 		String sql = "DELETE FROM trn_join_request WHERE club_id = ? AND user_id = ?;";

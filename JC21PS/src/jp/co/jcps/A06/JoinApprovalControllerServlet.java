@@ -31,15 +31,16 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 	/**
 	 * GETメソッドでリクエストされた場合の処理
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 共通チェック
-		if(!CommonCheck.existSession(request)) {
+		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
-		String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
+		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -57,7 +58,7 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 
 		try {
 			// beanにDBから取得した値をセット
-			while(rs.next()) {
+			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));
 				bean.addUserIdList(rs.getString("user_id"));
 				bean.addUserNameList(rs.getString("user_name"));
@@ -75,11 +76,12 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		// beanをリクエストにセット
 		request.setAttribute("bean", bean);
 
-
 		// 部活情報登録画面を表示
 		request.getRequestDispatcher("A06/JoinApproval.jsp").forward(request, response);
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 }
