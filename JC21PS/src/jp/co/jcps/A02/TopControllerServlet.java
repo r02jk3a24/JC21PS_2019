@@ -57,7 +57,12 @@ public class TopControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = db.executeSelectQuery(sql, paramList);
+		ResultSet rs = null;
+		try {
+			rs = db.executeSelectQuery(sql, paramList);
+		} catch (Exception e1) {
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
+		}
 
 		// 比較用の部活ID
 		String tmpClubId = null;
@@ -118,11 +123,12 @@ public class TopControllerServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			throw new ServletException(e);
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
 		} finally {
 			try {
 				db.close();
 			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 		}
 
@@ -159,11 +165,7 @@ public class TopControllerServlet extends HttpServlet {
 		BigDecimal threshold = new BigDecimal(0.5);
 
 		// 参加人数÷募集人数を計算し、過半数を超えている場合はtrueを返却
-		if (num.divide(max, 2, BigDecimal.ROUND_HALF_DOWN).compareTo(threshold) >= 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return num.divide(max, 2, BigDecimal.ROUND_HALF_DOWN).compareTo(threshold) >= 0;
 
 	}
 }

@@ -51,7 +51,12 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = db.executeSelectQuery(sql, paramList);
+		ResultSet rs = null;
+		try {
+			rs = db.executeSelectQuery(sql, paramList);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
+		}
 
 		// 部員登録申請画面に表示するbeanを初期化
 		JoinApprovalBean bean = new JoinApprovalBean();
@@ -65,11 +70,12 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			throw new ServletException(e);
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
 		} finally {
 			try {
 				db.close();
 			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 		}
 

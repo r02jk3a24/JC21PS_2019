@@ -22,8 +22,9 @@ public class DBConnection {
 	 * @param sql
 	 * @param paramList
 	 * @return
+	 * @throws Exception
 	 */
-	public ResultSet executeSelectQuery(String sql, List<String> paramList) {
+	public ResultSet executeSelectQuery(String sql, List<String> paramList) throws Exception {
 		try {
 			// データソースの取得
 			Context ctx = new InitialContext();
@@ -49,8 +50,8 @@ public class DBConnection {
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			throw e;
 		}
-		return rs;
 	}
 
 	/**
@@ -58,8 +59,9 @@ public class DBConnection {
 	 * @param sql
 	 * @param paramList
 	 * @return
+	 * @throws Exception 
 	 */
-	public void executeInsertUpdateQuery(String sql, List<String> paramList) {
+	public void executeInsertUpdateQuery(String sql, List<String> paramList) throws Exception {
 		try {
 			// データソースの取得
 			Context ctx = new InitialContext();
@@ -84,6 +86,7 @@ public class DBConnection {
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			throw e;
 		} finally {
 			try {
 				this.con.close();

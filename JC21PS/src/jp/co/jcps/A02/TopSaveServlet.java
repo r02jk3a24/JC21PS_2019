@@ -55,7 +55,12 @@ public class TopSaveServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = db.executeSelectQuery(sql, paramList);
+		ResultSet rs = null;
+		try {
+			rs = db.executeSelectQuery(sql, paramList);
+		} catch (Exception e1) {
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
+		}
 
 		try {
 			// 参加者データの有無をチェック

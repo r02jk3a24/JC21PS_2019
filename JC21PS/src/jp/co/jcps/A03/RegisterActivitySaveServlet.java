@@ -70,24 +70,27 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 		String sql = "INSERT INTO trn_activity (activity_id, club_id, activity_name, activity_place, activity_start_time, activity_end_time, activity_description, max_participant) VALUES (?,?,?,?,?,?,?,?);";
 
 		// SQLに埋め込むパラメータリストを定義
-		List<String> paramList = new ArrayList<String>();
-		paramList.add(getNextActivityId());
-		paramList.add((String) request.getSession().getAttribute("leaderClubId"));
-		paramList.add(request.getParameter("registActivityName"));
-		paramList.add(request.getParameter("registActivityPlace"));
-		paramList.add(startTime);
-		paramList.add(endTime);
-		paramList.add(request.getParameter("registActivityDescription"));
-		if (StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
-			paramList.add(request.getParameter(null));
-		} else {
-			paramList.add(request.getParameter("registMaxParticipant"));
+		try {
+			List<String> paramList = new ArrayList<String>();
+			paramList.add(getNextActivityId());
+			paramList.add((String) request.getSession().getAttribute("leaderClubId"));
+			paramList.add(request.getParameter("registActivityName"));
+			paramList.add(request.getParameter("registActivityPlace"));
+			paramList.add(startTime);
+			paramList.add(endTime);
+			paramList.add(request.getParameter("registActivityDescription"));
+			if (StringUtils.isEmpty(request.getParameter("registMaxParticipant"))) {
+				paramList.add(request.getParameter(null));
+			} else {
+				paramList.add(request.getParameter("registMaxParticipant"));
+			}
+
+			// SQLを実行し結果を取得
+			DBConnection db = new DBConnection();
+			db.executeInsertUpdateQuery(sql, paramList);
+		}catch(Exception e){
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
 		}
-
-		// SQLを実行し結果を取得
-		DBConnection db = new DBConnection();
-		db.executeInsertUpdateQuery(sql, paramList);
-
 		// msgに登録完了メッセージをセット
 		msg.addMessageList("新規活動を登録しました。");
 		request.setAttribute("messageBean", msg);
@@ -148,9 +151,10 @@ public class RegisterActivitySaveServlet extends HttpServlet {
 	/**
 	 * シーケンスから次の活動IDを取得する
 	 * @return activityId
+	 * @throws Exception
 	 *
 	 */
-	private String getNextActivityId() {
+	private String getNextActivityId() throws Exception {
 		String activityId = null;
 
 		DBConnection db = new DBConnection();

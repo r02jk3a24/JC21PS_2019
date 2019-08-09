@@ -51,7 +51,12 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = db.executeSelectQuery(sql, paramList);
+		ResultSet rs = null;
+		try {
+			rs = db.executeSelectQuery(sql, paramList);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
+		}
 
 		// 活動登録画面のBeanを初期化
 		RegisterActivityBean bean = new RegisterActivityBean();
