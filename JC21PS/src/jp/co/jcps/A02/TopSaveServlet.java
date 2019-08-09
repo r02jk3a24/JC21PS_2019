@@ -79,6 +79,7 @@ public class TopSaveServlet extends HttpServlet {
 			try {
 				db.close();
 			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 		}
 
@@ -86,7 +87,7 @@ public class TopSaveServlet extends HttpServlet {
 		request.getRequestDispatcher("/TopController").forward(request, response);
 	}
 
-	private void insertTrnParticipant(List<String> paramList) {
+	private void insertTrnParticipant(List<String> paramList) throws Exception {
 		// インサートするSQL
 		String sql = "INSERT INTO trn_participant VALUES (?,?);";
 
@@ -95,7 +96,7 @@ public class TopSaveServlet extends HttpServlet {
 		db.executeInsertUpdateQuery(sql, paramList);
 	}
 
-	private void deleteTrnParticipant(List<String> paramList) {
+	private void deleteTrnParticipant(List<String> paramList) throws Exception {
 		// デリートするSQL
 		String sql = "DELETE FROM trn_participant WHERE activity_id = ? AND user_id = ?;";
 

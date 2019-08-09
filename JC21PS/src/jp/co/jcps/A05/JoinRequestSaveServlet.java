@@ -51,7 +51,11 @@ public class JoinRequestSaveServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		db.executeInsertUpdateQuery(sql, paramList);
+		try {
+			db.executeInsertUpdateQuery(sql, paramList);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
+		}
 
 		// msgに登録完了メッセージをセット
 		MessageBean msg = new MessageBean();
