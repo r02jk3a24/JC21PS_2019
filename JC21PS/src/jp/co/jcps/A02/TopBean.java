@@ -24,7 +24,6 @@ public class TopBean implements Serializable {
 	public TopBean() {
 		this.clubNameList = new ArrayList<>();
 		this.clubActivityList = new ArrayList<>();
-
 	}
 
 	/**

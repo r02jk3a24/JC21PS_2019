@@ -39,7 +39,7 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
-		// セッションからログイン中のユーザーIDを取得する
+		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		// SQLに埋め込むパラメータリストを定義

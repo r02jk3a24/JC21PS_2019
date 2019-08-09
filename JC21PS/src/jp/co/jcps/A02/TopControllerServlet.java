@@ -71,7 +71,6 @@ public class TopControllerServlet extends HttpServlet {
 		TopBean bean = new TopBean();
 
 		try {
-
 			// リストにDBから取得した値をセット
 			while (rs.next()) {
 				ActivityBean activity = new ActivityBean();

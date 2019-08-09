@@ -30,6 +30,7 @@
 	}
   %>
   <form action="/JC21PS/JoinRequestSave" method="POST">
+  	<div style='width:90%; margin:auto'>
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
@@ -49,6 +50,7 @@
   		<%} %>
   		</tbody>
   	</table>
+  	</div>
   	<div align="center">
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
