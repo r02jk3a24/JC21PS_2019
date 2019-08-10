@@ -32,6 +32,7 @@
   <form action="/JC21PS/TopSave" method="POST">
   <%
  	for(int i = 0; i < bean.getClubActivityList().size(); i++){
+ 		out.println("<div style='margin:auto; width:90%'>");
  		out.println("<h2>" + bean.getClubNameList().get(i) + "</h2>");
  		out.println("<table class='table table-bordered' style='table-layout:fixed'>");
  		out.println("<tbody>");
@@ -78,6 +79,7 @@
  		}
  		out.println("<tbody>");
  		out.println("</table>");
+ 		out.println("</div>");
  		out.println("</br></br>");
  	}
  %>

@@ -29,8 +29,11 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
-  <h2><%= bean.getClubName() %></h2>
+
+
   <form name="form" action="/JC21PS/JoinApprovalSave" method="POST">
+  <div style="margin:auto; width:90%">
+  <h2><%= bean.getClubName() %></h2>
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
@@ -46,6 +49,7 @@
   		<% } %>
   		</tbody>
   	</table>
+  	</div>
   	<div align="center">
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
