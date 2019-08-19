@@ -51,17 +51,12 @@ public class ParticipantListControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = null;
-		try {
-			rs = db.executeSelectQuery(sql, paramList);
-		} catch (Exception e) {
-			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
-		}
 
 		// 活動登録画面のBeanを初期化
 		ParticipantListBean bean = new ParticipantListBean();
 
 		try {
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに部活名をセット
 			while (rs.next()) {
 				bean.setActivityName(rs.getString("activity_name"));

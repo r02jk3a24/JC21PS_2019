@@ -52,17 +52,12 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = null;
-		try {
-			rs = db.executeSelectQuery(sql, paramList);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 
 		// 部員登録申請画面に表示するbeanを初期化
 		JoinRequestBean bean = new JoinRequestBean();
 
 		try {
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに部活名をセット
 			while (rs.next()) {
 				bean.addClubIdList(rs.getString("club_id"));

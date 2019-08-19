@@ -51,17 +51,12 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = null;
-		try {
-			rs = db.executeSelectQuery(sql, paramList);
-		} catch (Exception e) {
-			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
-		}
 
 		// 部活情報登録画面のBeanを初期化
 		ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
 
 		try {
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに部活名をセット
 			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));

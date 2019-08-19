@@ -51,18 +51,13 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = null;
-		try {
-			rs = db.executeSelectQuery(sql, paramList);
-		} catch (Exception e) {
-			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
-		}
 
 		// 部員登録申請画面に表示するbeanを初期化
 		JoinApprovalBean bean = new JoinApprovalBean();
 
 		try {
 			// beanにDBから取得した値をセット
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));
 				bean.addUserIdList(rs.getString("user_id"));

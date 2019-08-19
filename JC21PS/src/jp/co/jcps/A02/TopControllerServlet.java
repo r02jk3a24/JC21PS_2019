@@ -57,12 +57,6 @@ public class TopControllerServlet extends HttpServlet {
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
-		ResultSet rs = null;
-		try {
-			rs = db.executeSelectQuery(sql, paramList);
-		} catch (Exception e1) {
-			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
-		}
 
 		// 比較用の部活ID
 		String tmpClubId = null;
@@ -76,6 +70,7 @@ public class TopControllerServlet extends HttpServlet {
 		TopBean bean = new TopBean();
 
 		try {
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// リストにDBから取得した値をセット
 			while (rs.next()) {
 				ActivityBean activity = new ActivityBean();
