@@ -29,10 +29,13 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
+  <div style='width:60%; margin:auto'>
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
   			<th colspan="1">活動名</th>
+  		</tr>
+  		<tr>
   			<td colspan="3"><%= bean.getActivityName() %></td>
   		</tr>
   		<tr>
@@ -45,6 +48,7 @@
   		<% } %>
   		</tbody>
   	</table>
+  	</div>
   	<div align="center">
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
