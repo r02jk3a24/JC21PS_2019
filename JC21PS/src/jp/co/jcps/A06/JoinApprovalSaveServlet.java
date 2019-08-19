@@ -17,13 +17,13 @@ import jp.co.jcps.Common.DBConnection;
  * 部員登録承認の登録処理
  */
 @WebServlet("/JoinApprovalSave")
-public class JoinRequestSaveServlet extends HttpServlet {
+public class JoinApprovalSaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * コンストラクタ
 	 */
-	public JoinRequestSaveServlet() {
+	public JoinApprovalSaveServlet() {
 		super();
 	}
 
