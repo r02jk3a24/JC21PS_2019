@@ -44,10 +44,18 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add(leaderClubId);
+		/* TODO
+		 * SQLに埋め込む値をparamListに設定しなさい。
+		 * ヒント①
+		 * paramListはaddメソッドで要素を追加できる。
+		 * ヒント②
+		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
+		 */
 
-		// SQLを設定
-		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ?;";
+
+
+		// TODO : データベースから必要な情報を取得するためのSQL文を完成させなさい。
+		String sql = "SELECT ";
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -57,7 +65,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		try {
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
-			// beanに部活名をセット
+			// beanにDBから取得した値をセット
 			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));
 				bean.setClubDescription(rs.getString("club_description"));

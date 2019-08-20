@@ -33,17 +33,23 @@
   	<table class='table table-bordered'>
   		<tbody>
   		<tr>
-  			<th colspan="1">活動名</th>
+  			<th>活動名</th>
   		</tr>
   		<tr>
-  			<td colspan="3"><%= bean.getActivityName() %></td>
+  			<td><%= bean.getActivityName() %></td>
   		</tr>
   		<tr>
-  			<th colspan="4">参加者一覧</th>
+  			<th>参加者一覧</th>
   		</tr>
+  		<%--
+  		TODO
+  		<td>タグの中を記入し、参加者一覧を表示しなさい。
+  		ヒント
+  		ArrayListの中身はget(【番号】)で取得する事ができる。
+  		 --%>
   		<%  for(int i = 0; i < bean.getParticipantList().size() ; i++) {  %>
   		<tr>
-  			<td colspan="4"><%= bean.getParticipantList().get(i)%></td>
+  			<td><%= %></td>
   		</tr>
   		<% } %>
   		</tbody>

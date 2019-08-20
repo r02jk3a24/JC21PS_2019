@@ -46,8 +46,8 @@ public class ParticipantListControllerServlet extends HttpServlet {
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(activityId);
 
-		// SQLを設定
-		String sql = "SELECT activity.*,usr.* FROM trn_activity as activity INNER JOIN trn_participant as participant ON activity.activity_id = participant.activity_id INNER JOIN mst_user as usr ON participant.user_id = usr.user_id WHERE activity.activity_id = ?;";
+		// TODO : データベースから必要な情報を取得するためのSQL文を完成させなさい。
+		String sql = "SELECT ";
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -57,10 +57,20 @@ public class ParticipantListControllerServlet extends HttpServlet {
 
 		try {
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
-			// beanに部活名をセット
+			// beanに画面に出力する情報をセット
 			while (rs.next()) {
-				bean.setActivityName(rs.getString("activity_name"));
-				bean.addParticipantList(rs.getString("user_name"));
+				/* TODO : データベースから取得した情報をbeanにセットしなさい。
+				ヒント①
+				ParticipantListBeanは活動名と参加者リストのプロパティがあり、
+				活動名はsetActivityName()
+				参加者リストはaddParticipantList()
+				で設定・追加ができる。
+				ヒント②
+				DBから取得した情報はResultSetクラスのgetString()メソッドで取得する。
+				getStringメソッドの引数は取得したいカラム名を文字列で指定する。
+				 */
+				
+				
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

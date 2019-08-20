@@ -44,7 +44,11 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add(leaderClubId);
+		/* TODO
+		 * SQLに埋め込む値をparamListに設定しなさい。
+		 * ヒント
+		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
+		 */
 
 		// SQLを設定
 		String sql = "SELECT club.club_name,usr.user_id,usr.user_name FROM trn_join_request as request INNER JOIN mst_user as usr ON usr.user_id = request.user_id INNER JOIN mst_club as club ON request.club_id = club.club_id WHERE request.club_id = ?;";

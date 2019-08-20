@@ -41,15 +41,26 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		//リクエストのエンコードを指定
 		request.setCharacterEncoding("UTF-8");
 
-		// SQLを宣言
-		String sql = "INSERT INTO trn_join_request (user_id,club_id) VALUES (?,?);";
+
+		// TODO : データベースにデータを登録する為のSQL文を完成させなさい。
+		String sql = "INSERT INTO";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add((String) request.getSession().getAttribute("userId"));
-		paramList.add(request.getParameter("registClubId"));
+		/* TODO
+		 * SQLに埋め込む値をparamListに設定しなさい。
+		 * ヒント①
+		 * user_idはセッション情報から取得する。
+		 * 取得の仕方はJoinRequestControllerServlet.java 43行目を参照
+		 * ヒント②
+		 * 登録する部活IDはリクエストパラメータとしてHttpServletRequestに格納されている。
+		 * リクエストパラメータの取得のrequest.getParameter(【HTMLのname属性の値】)で取得可能
+		 * A04,ParticipantListControllerServlet.java 43行目を参照
+		 */
 
-		// SQLを実行し結果を取得
+
+
+		// SQLを実行しデータを登録
 		DBConnection db = new DBConnection();
 		try {
 			db.executeInsertUpdateQuery(sql, paramList);

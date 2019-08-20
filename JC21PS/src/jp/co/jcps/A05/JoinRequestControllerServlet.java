@@ -44,8 +44,15 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add(userId);
-		paramList.add(userId);
+		/* TODO : SQLに埋め込む値をparamListに設定しなさい。
+		 *  ヒント①
+		 *  Listにはaddメソッドで要素を追加することができる。
+		 *  ヒント②
+		 *  SQLの?の部分がparamListの要素で置き換えられる。
+		 *  ヒント③
+		 *  ログインユーザーの情報を使う。
+		 */
+
 
 		// SQLを設定
 		String sql = "SELECT * FROM mst_club WHERE club_id NOT IN (SELECT club_id FROM trn_join_request WHERE user_id = ?) AND club_id NOT IN (SELECT club_id FROM trn_club_member WHERE user_id = ?);";
@@ -58,7 +65,7 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 		try {
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
-			// beanに部活名をセット
+			// beanに画面に出力する情報をセット
 			while (rs.next()) {
 				bean.addClubIdList(rs.getString("club_id"));
 				bean.addClubNameList(rs.getString("club_name"));

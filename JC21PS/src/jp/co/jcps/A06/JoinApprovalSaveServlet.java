@@ -46,14 +46,19 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 		try {
-			// 承認する場合
 			if (approval) {
-				// 部員テーブルに登録する
-				saveClubMember(leaderClubId, registUserId);
-			}
+				// 承認する場合
+				/* TODO
+				 * 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい。
+				 */
 
-			//承認する場合はも否認する場合も登録申請テーブルのデータを削除する
-			deleteJoinApproval(leaderClubId, registUserId);
+
+			}
+			/*
+			 * TODO
+			 * 部員登録申請を承認する場合および拒否する場合どちらも実行する処理（メソッド）を呼び出しなさい。
+			 */
+
 		}catch(Exception e) {
 			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
 		}
@@ -61,11 +66,19 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		// TOP画面の呼び出し
 		request.getRequestDispatcher("/JoinApprovalController").forward(request, response);
 	}
-
+	/**
+	 * 部員テーブル(trn_club_member)にデータを登録する。
+	 * @param registClubId 登録する部活ID
+	 * @param registUserId 登録するユーザーID
+	 * @throws Exception
+	 */
 	private void saveClubMember(String registClubId, String registUserId) throws Exception {
 
 		//SQLを宣言
-		String sql = "INSERT INTO trn_club_member (club_id,user_id,leader_flg) VALUES (?,?,0);";
+		/* TODO
+		 * SQLを完成させなさい。
+		 */
+		String sql = "INSERT INTO ";
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(registClubId);
@@ -76,10 +89,19 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		db.executeInsertUpdateQuery(sql, paramList);
 	}
 
-	private void deleteJoinApproval(String registClubId, String registUserId) throws Exception {
+	/**
+	 * 部員登録申請テーブル(trn_join_request)のデータを削除する。
+	 * @param registClubId
+	 * @param registUserId
+	 * @throws Exception
+	 */
+	private void deleteJoinRequest(String registClubId, String registUserId) throws Exception {
 
 		//SQLを宣言
-		String sql = "DELETE FROM trn_join_request WHERE club_id = ? AND user_id = ?;";
+		/* TODO
+		 * SQLを完成させなさい。
+		 */
+		String sql = "DELETE FROM ";
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(registClubId);
