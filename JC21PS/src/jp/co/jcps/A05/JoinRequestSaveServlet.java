@@ -42,13 +42,12 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 
-		// TODO : データベースにデータを登録する為のSQL文を完成させなさい。
+		// TODO: データベースにデータを登録する為のSQL文を完成させなさい。
 		String sql = "INSERT INTO";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		/* TODO
-		 * SQLに埋め込む値をparamListに設定しなさい。
+		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
 		 * ヒント①
 		 * user_idはセッション情報から取得する。
 		 * 取得の仕方はJoinRequestControllerServlet.java 43行目を参照

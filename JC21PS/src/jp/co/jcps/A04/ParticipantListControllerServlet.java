@@ -46,7 +46,7 @@ public class ParticipantListControllerServlet extends HttpServlet {
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(activityId);
 
-		// TODO : データベースから必要な情報を取得するためのSQL文を完成させなさい。
+		// TODO: データベースから必要な情報を取得するためのSQL文を完成させなさい。
 		String sql = "SELECT ";
 
 		// SQLを実行し結果を取得
@@ -59,7 +59,7 @@ public class ParticipantListControllerServlet extends HttpServlet {
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに画面に出力する情報をセット
 			while (rs.next()) {
-				/* TODO : データベースから取得した情報をbeanにセットしなさい。
+				/* TODO: データベースから取得した情報をbeanにセットしなさい。
 				ヒント①
 				ParticipantListBeanは活動名と参加者リストのプロパティがあり、
 				活動名はsetActivityName()
@@ -69,8 +69,8 @@ public class ParticipantListControllerServlet extends HttpServlet {
 				DBから取得した情報はResultSetクラスのgetString()メソッドで取得する。
 				getStringメソッドの引数は取得したいカラム名を文字列で指定する。
 				 */
-				
-				
+
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

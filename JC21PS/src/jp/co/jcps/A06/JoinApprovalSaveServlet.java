@@ -48,16 +48,11 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		try {
 			if (approval) {
 				// 承認する場合
-				/* TODO
-				 * 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい。
-				 */
+				// TODO: 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい。
 
 
 			}
-			/*
-			 * TODO
-			 * 部員登録申請を承認する場合および拒否する場合どちらも実行する処理（メソッド）を呼び出しなさい。
-			 */
+			//TODO: 部員登録申請を承認する場合および拒否する場合どちらも実行する処理（メソッド）を呼び出しなさい。
 
 		}catch(Exception e) {
 			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
@@ -75,10 +70,9 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 	private void saveClubMember(String registClubId, String registUserId) throws Exception {
 
 		//SQLを宣言
-		/* TODO
-		 * SQLを完成させなさい。
-		 */
+		// TODO: SQL文を完成させなさい。
 		String sql = "INSERT INTO ";
+
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(registClubId);
@@ -98,10 +92,9 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 	private void deleteJoinRequest(String registClubId, String registUserId) throws Exception {
 
 		//SQLを宣言
-		/* TODO
-		 * SQLを完成させなさい。
-		 */
+		// TODO: SQL文を完成させなさい。
 		String sql = "DELETE FROM ";
+
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(registClubId);
