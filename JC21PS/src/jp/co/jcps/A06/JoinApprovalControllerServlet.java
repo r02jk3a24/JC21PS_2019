@@ -42,6 +42,9 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
+		// SQLを設定
+		String sql = "SELECT club.club_name,usr.user_id,usr.user_name FROM trn_join_request as request INNER JOIN mst_user as usr ON usr.user_id = request.user_id INNER JOIN mst_club as club ON request.club_id = club.club_id WHERE request.club_id = ?;";
+
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
@@ -49,17 +52,15 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
 		 */
 
-		// SQLを設定
-		String sql = "SELECT club.club_name,usr.user_id,usr.user_name FROM trn_join_request as request INNER JOIN mst_user as usr ON usr.user_id = request.user_id INNER JOIN mst_club as club ON request.club_id = club.club_id WHERE request.club_id = ?;";
 
-		// SQLを実行し結果を取得
+		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
 		// 部員登録申請画面に表示するbeanを初期化
 		JoinApprovalBean bean = new JoinApprovalBean();
 
 		try {
-			// beanにDBから取得した値をセット
+			// SQLを実行し結果を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			while (rs.next()) {
 				bean.setClubName(rs.getString("club_name"));

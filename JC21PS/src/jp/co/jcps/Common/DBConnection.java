@@ -59,7 +59,7 @@ public class DBConnection {
 	 * @param sql
 	 * @param paramList
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void executeInsertUpdateQuery(String sql, List<String> paramList) throws Exception {
 		try {

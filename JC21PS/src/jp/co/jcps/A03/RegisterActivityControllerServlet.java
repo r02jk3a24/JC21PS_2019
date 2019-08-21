@@ -49,13 +49,14 @@ public class RegisterActivityControllerServlet extends HttpServlet {
 		// SQLを設定
 		String sql = "SELECT club_name FROM mst_club WHERE club_id = ?;";
 
-		// SQLを実行し結果を取得
+		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
 		// 活動登録画面のBeanを初期化
 		RegisterActivityBean bean = new RegisterActivityBean();
 
 		try {
+			// SQLを実行し結果を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに部活名をセット
 			while (rs.next()) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
+<%--TODO beanの読み込み --%>
 <jsp:useBean id="bean" class="jp.co.jcps.A07.ClubInfoRegisterBean" scope="request" />
 
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
@@ -35,10 +36,12 @@
   		<tbody>
   		<tr>
   			<th colspan="1">部活名</th>
+  			<%--TODO 部活名の表示 --%>
   			<td colspan="3"><%= bean.getClubName() %></td>
   		</tr>
   		<tr>
   			<th colspan="1">部活説明</th>
+  			<%--TODO 部活説明の表示 --%>
   			<td colspan ="3"><textarea name="registClubDescription"  rows="5" cols="100" maxlength="400"><%= bean.getClubDescription() %></textarea></td>
   		</tbody>
   	</table>

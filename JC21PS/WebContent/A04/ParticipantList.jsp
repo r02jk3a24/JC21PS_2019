@@ -45,7 +45,7 @@
   		TODO
   		<td>タグの中を記入し、参加者一覧を表示しなさい。
   		ヒント
-  		ArrayListの中身はget(【番号】)で取得する事ができる。
+  		Listの中身はget(【番号】)で取得する事ができる。
   		 --%>
   		<%  for(int i = 0; i < bean.getParticipantList().size() ; i++) {  %>
   		<tr>

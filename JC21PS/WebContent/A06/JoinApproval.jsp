@@ -42,7 +42,12 @@
   		</tr>
   		<% for(int i = 0; i < bean.getUserIdList().size(); i++){ %>
   		<tr>
-  			<td><%= bean.getUserNameList().get(i) %></td>
+  			<%--TODO
+  			部員登録申請者の名前が表示されるように、50行目を適切に変更しなさい。
+  			ヒント
+  			Listの中身はget(【番号】)で取得できる。
+  			 --%>
+  			<td><%=  %></td>
   			<td><input type="button"  value="承認" onclick="joinApproval('<%= bean.getUserIdList().get(i) %>')"/></td>
   			<td><input type="button"  value="否認" onclick="joinDisapproval('<%= bean.getUserIdList().get(i) %>')"/></td>
   		</tr>

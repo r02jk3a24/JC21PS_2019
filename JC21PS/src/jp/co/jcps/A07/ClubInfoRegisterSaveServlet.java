@@ -61,17 +61,19 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 
 		// セッションからログイン中のユーザーIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
+
+		// SQLを宣言
+		String sql = "UPDATE mst_club SET club_description=?  WHERE club_id=?;";
+
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(request.getParameter("registClubDescription"));
 		paramList.add(leaderClubId);
 
-		// SQLを設定
-		String sql = "UPDATE mst_club SET club_description=?  WHERE club_id=?;";
-
-		// SQLを実行し結果を取得
+		// DB接続を初期化
 		DBConnection db = new DBConnection();
 		try {
+			// SQLを実行し結果を取得
 			db.executeInsertUpdateQuery(sql, paramList);
 		} catch (Exception e) {
 			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);

@@ -42,11 +42,18 @@
   		</tr>
   		<% for(int i = 0; i < bean.getClubIdList().size(); i++){ %>
   		<tr>
-  			<td colspan="1"><%= bean.getClubNameList().get(i) %></td>
-  			<td colspan="1"><button type='submit' name='registClubId'  value='<%= bean.getClubIdList().get(i) %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
+  			<%--TODO
+  			52行目～56行目の<%= %>内を適切に埋めなさい。
+  			ヒント①
+  			Listの中身はget(【番号】)で取得できる。
+  			ヒント②
+  			<button>タグのvalueオプションはボタンを押した際に登録処理に渡すリクエストパラメータの値を表す。
+  			 --%>
+  			<td colspan="1"><%= %></td>
+  			<td colspan="1"><button type='submit' name='registClubId'  value='<%=  %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
   		</tr>
   		<tr>
-  			<td colspan ="2"><%= bean.getClubDescriptionList().get(i) %></td>
+  			<td colspan ="2"><%=  %></td>
   		<%} %>
   		</tbody>
   	</table>

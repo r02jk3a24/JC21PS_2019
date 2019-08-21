@@ -42,6 +42,9 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		// セッションからログイン中のユーザーIDを取得する
 		String userId = (String) request.getSession().getAttribute("userId");
 
+		// SQLを宣言
+		String sql = "SELECT * FROM mst_club WHERE club_id NOT IN (SELECT club_id FROM trn_join_request WHERE user_id = ?) AND club_id NOT IN (SELECT club_id FROM trn_club_member WHERE user_id = ?);";
+
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
@@ -54,16 +57,16 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		 */
 
 
-		// SQLを設定
-		String sql = "SELECT * FROM mst_club WHERE club_id NOT IN (SELECT club_id FROM trn_join_request WHERE user_id = ?) AND club_id NOT IN (SELECT club_id FROM trn_club_member WHERE user_id = ?);";
 
-		// SQLを実行し結果を取得
+
+		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
 		// 部員登録申請画面に表示するbeanを初期化
 		JoinRequestBean bean = new JoinRequestBean();
 
 		try {
+			// SQLを実行し結果を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに画面に出力する情報をセット
 			while (rs.next()) {
