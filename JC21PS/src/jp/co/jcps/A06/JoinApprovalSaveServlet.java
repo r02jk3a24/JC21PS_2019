@@ -41,13 +41,15 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// リクエストから情報を取得する
-		String registUserId = request.getParameter("userId");
-		boolean approval = request.getParameter("approval").equals("true");
+		boolean approvalFlg = request.getParameter("approvalFlg").equals("true");
+		// TODO: リクエストから承認・否認するユーザーのユーザーIDを取得しなさい
+		String registUserId = ;
+
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		try {
-			if (approval) {
+			if (approvalFlg) {
 				// 承認する場合
 				// TODO: 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい。
 

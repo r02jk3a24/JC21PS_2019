@@ -48,8 +48,12 @@
   			Listの中身はget(【番号】)で取得できる。
   			 --%>
   			<td><%=  %></td>
-  			<td><input type="button"  value="承認" onclick="joinApproval('<%= bean.getUserIdList().get(i) %>')"/></td>
-  			<td><input type="button"  value="否認" onclick="joinDisapproval('<%= bean.getUserIdList().get(i) %>')"/></td>
+
+  			<!-- ヒント
+  			下記ボタンではボタンを押された際にuserIdと承認フラグ（承認:true,否認:false）を設定しリクエストをする
+  			 -->
+  			<td><input type="button"  value="承認" onclick="joinApproval('<%= bean.getUserIdList().get(i) %>', true)"/></td>
+  			<td><input type="button"  value="否認" onclick="joinApproval('<%= bean.getUserIdList().get(i) %>',false)"/></td>
   		</tr>
   		<% } %>
   		</tbody>
@@ -59,8 +63,12 @@
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
   	<script>
-  		function joinApproval(userId){
-			var result = window.confirm('承認しますか？');
+		function joinApproval(userId, approvalFlg){
+  			if(approvalFlg){
+				var result = window.confirm('承認しますか？');
+  			}else{
+  				var result = window.confirm('否認しますか？');
+  			}
 			if(result){
 				var userElement = document.createElement('input');
 				userElement.setAttribute('type','hidden');
@@ -69,27 +77,8 @@
 				document.form.appendChild(userElement);
 				var approvalElement = document.createElement('input');
 				approvalElement.setAttribute('type','hidden');
-				approvalElement.setAttribute('name','approval');
-				approvalElement.setAttribute('value',true);
-				document.form.appendChild(approvalElement);
-				document.form.submit();
-			}else{
-				return false;
-			}
-  		}
-
-  		function joinDisapproval(userId){
-			var result = window.confirm('否認しますか？');
-			if(result){
-				var userElement = document.createElement('input');
-				userElement.setAttribute('type','hidden');
-				userElement.setAttribute('name','userId');
-				userElement.setAttribute('value',userId);
-				document.form.appendChild(userElement);
-				var approvalElement = document.createElement('input');
-				approvalElement.setAttribute('type','hidden');
-				approvalElement.setAttribute('name','approval');
-				approvalElement.setAttribute('value',false);
+				approvalElement.setAttribute('name','approvalFlg');
+				approvalElement.setAttribute('value',approvalFlg);
 				document.form.appendChild(approvalElement);
 				document.form.submit();
 			}else{
