@@ -40,7 +40,11 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		}
 
 		// セッションからログイン中のユーザーIDを取得する
-		String userId = (String) request.getSession().getAttribute("userId");
+		/* TODO: セッションからユーザーIDを取得しなさい。
+		 *  ヒント
+		 *  セッションには「userId」という名前でログインユーザーIDが格納されている。
+		 */
+		String userId = ;
 
 		// SQLを宣言
 		String sql = "SELECT * FROM mst_club WHERE club_id NOT IN (SELECT club_id FROM trn_join_request WHERE user_id = ?) AND club_id NOT IN (SELECT club_id FROM trn_club_member WHERE user_id = ?);";
@@ -51,8 +55,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		 *  ヒント①
 		 *  Listにはaddメソッドで要素を追加することができる。
 		 *  ヒント②
-		 *  SQLの?の部分がparamListの要素で置き換えられる。
-		 *  ヒント③
 		 *  ログインユーザーの情報を使う。
 		 */
 

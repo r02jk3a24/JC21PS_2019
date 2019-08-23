@@ -40,11 +40,12 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		//リクエストのエンコードを指定
 		request.setCharacterEncoding("UTF-8");
 
-		// リクエストが情報を取得する
+		// リクエストから情報を取得する
 		String registUserId = request.getParameter("userId");
 		boolean approval = request.getParameter("approval").equals("true");
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
+
 		try {
 			if (approval) {
 				// 承認する場合
@@ -75,8 +76,9 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add(registClubId);
-		paramList.add(registUserId);
+		// TODO: SQLに埋め込む値をparamListに設定しなさい。
+
+
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -97,8 +99,8 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		paramList.add(registClubId);
-		paramList.add(registUserId);
+		// TODO: SQLに埋め込む値をparamListに設定しなさい。
+
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
