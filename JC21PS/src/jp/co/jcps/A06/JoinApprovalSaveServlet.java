@@ -83,7 +83,7 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
-		// TODO: SQLに埋め込む値をparamListに設定しなさい。
+		// TODO: SQLに埋め込む値をparamListに設定しなさい
 		paramList.add(registClubId);
 		paramList.add(registUserId);
 
