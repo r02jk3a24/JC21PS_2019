@@ -52,7 +52,7 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
-		 *  ヒント①
+		 *   ヒント①
 		 *  Listにはaddメソッドで要素を追加することができる。
 		 *  ヒント②
 		 *  ログインユーザーの情報を使う。
