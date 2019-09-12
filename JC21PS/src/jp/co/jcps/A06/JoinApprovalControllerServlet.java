@@ -43,7 +43,9 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 
 		// SQLを設定
-		String sql = "SELECT club.club_name,usr.user_id,usr.user_name FROM trn_join_request as request INNER JOIN mst_user as usr ON usr.user_id = request.user_id INNER JOIN mst_club as club ON request.club_id = club.club_id WHERE request.club_id = ?;";
+		String sql = "SELECT club.club_name,usr.user_id,usr.user_name "
+				+ "FROM trn_join_request as request INNER JOIN mst_user as usr ON usr.user_id = request.user_id INNER JOIN mst_club as club ON request.club_id = club.club_id"
+				+ "WHERE request.club_id = ?;";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -51,7 +53,7 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		 * ヒント
 		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
 		 */
-
+		paramList.add(leaderClubId);
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
