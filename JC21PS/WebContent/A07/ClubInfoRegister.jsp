@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
 <%--TODO beanの読み込み --%>
+
 <jsp:useBean id="bean" class="jp.co.jcps.A07.ClubInfoRegisterBean" scope="request" />
 
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
