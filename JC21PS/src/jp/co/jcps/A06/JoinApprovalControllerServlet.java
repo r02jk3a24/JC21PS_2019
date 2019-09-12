@@ -50,7 +50,9 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
 		 * ヒント
 		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
+		 *
 		 */
+		paramList.add(leaderClubId);
 
 
 		// DB接続を初期化
