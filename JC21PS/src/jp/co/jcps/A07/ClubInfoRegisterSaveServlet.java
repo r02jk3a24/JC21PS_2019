@@ -41,11 +41,14 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 		}
 
 		//リクエストのエンコードを指定
+
 		request.setCharacterEncoding("UTF-8");
+
 
 		// 入力値チェック
 		MessageBean msg = new MessageBean();
 		Validation.checkLegalLengthString(request.getParameter("registClubDescription"), 400, "部活説明", msg);
+
 
 		// エラーがある場合は入力値を復元してエラーを表示
 		if (msg.getMessageList().size() != 0) {
