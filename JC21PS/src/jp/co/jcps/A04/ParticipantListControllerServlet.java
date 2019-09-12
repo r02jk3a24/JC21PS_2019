@@ -41,15 +41,16 @@ public class ParticipantListControllerServlet extends HttpServlet {
 
 		// リクエストパラメーターから活動IDを取得する
 		// TODO: リクエストから遷移元でクリックされた活動IDを取得できるように44行目を変更しなさい。
-		String activityId = "";
+		String activityId = (String) request.getParameter("activity_id");
 
 		// TODO: データベースから必要な情報を取得するためのSQL文を完成させなさい。
-		String sql = "SELECT ";
+		String sql = "SELECT mst_user.user_name, trn_activity.activity_name FROM trn_participant INNER JOIN mst_user ON trn_participant.user_id = mst_user.user_id INNER JOIN trn_activity ON trn_participant.activity_id = trn_activity.activity_id WHERE trn_participant.activity_id = ?;";
+
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値を設定しなさい。
-		
+		paramList.add(activityId);
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
@@ -60,6 +61,7 @@ public class ParticipantListControllerServlet extends HttpServlet {
 		try {
 			// SQLを実行し結果を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
+
 			// beanに画面に出力する情報をセット
 			while (rs.next()) {
 				/* TODO: データベースから取得した情報をbeanにセットしなさい。
@@ -72,7 +74,8 @@ public class ParticipantListControllerServlet extends HttpServlet {
 				DBから取得した情報はResultSetクラスのgetString()メソッドで取得する。
 				getStringメソッドの引数は取得したいカラム名を文字列で指定する。
 				 */
-
+				bean.setActivityName(rs.getString("activity_name"));
+				bean.addParticipantList(rs.getString("user_name"));
 
 			}
 		} catch (Exception e) {
