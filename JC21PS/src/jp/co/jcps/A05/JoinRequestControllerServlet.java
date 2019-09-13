@@ -62,7 +62,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 
 
-
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
@@ -71,7 +70,7 @@ public class JoinRequestControllerServlet extends HttpServlet {
 
 		try {
 			// SQLを実行し結果を取得
-			ResultSet rs = db.executeSelectQuery(sql, paramList);
+			ResultSet rs = db.executeSelectQuery(sql, paramList );
 			// beanに画面に出力する情報をセット
 			while (rs.next()) {
 				bean.addClubIdList(rs.getString("club_id"));
