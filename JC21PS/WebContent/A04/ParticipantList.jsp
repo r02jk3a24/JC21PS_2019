@@ -41,12 +41,13 @@
   		<tr>
   			<th>参加者一覧</th>
   		</tr>
-  		<%--TODO
+  		<%--TODOs
   		for文を完成させなさい。
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<%  for() {  %>
+  		<% for(int i = 0; i < messageBean.getMessageList().size(); i++){
+  			out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");  %>
   			<%--TODO
  			参加者名の一覧が表示されるように実装しなさい。
  			ヒント
