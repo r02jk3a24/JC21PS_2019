@@ -64,6 +64,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 				// TODO: beanにDBから取得した値をセット
 				bean.setClubName(rs.getString("club_name"));
 				bean.setClubDescription(rs.getString("club_description"));
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -42,8 +42,9 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		// リクエストから情報を取得する
 		boolean approvalFlg = request.getParameter("approvalFlg").equals("true");
+
 		// TODO: リクエストから承認・否認するユーザーのユーザーIDを取得しなさい
-		String registUserId = ;
+		String registUserId = (String) request.getSession().getAttribute("registUserId");
 
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
@@ -52,10 +53,11 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 			if (approvalFlg) {
 				// 承認する場合
 				// TODO: 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい。
-
+				saveClubMember(registUserId,leaderClubId);
 
 			}
 			//TODO: 部員登録申請を承認する場合および拒否する場合どちらも実行する処理（メソッド）を呼び出しなさい。
+			deleteJoinRequest(registUserId,leaderClubId);
 
 		}catch(Exception e) {
 			request.getRequestDispatcher("ERROR/Error.jsp").forward(request, response);
@@ -74,11 +76,13 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		//SQLを宣言
 		// TODO: SQL文を完成させなさい。
-		String sql = "INSERT INTO ";
+		String sql = "INSERT INTO trn_club_member values(club_id = ?, user_id = ?) ";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい。
+		paramList.add(registClubId);
+		paramList.add(registUserId);
 
 
 
@@ -97,11 +101,13 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		//SQLを宣言
 		// TODO: SQL文を完成させなさい。
-		String sql = "DELETE FROM ";
+		String sql = "DELETE FROM trn_join_request where clud_id = ? and ruser_id = ?";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい。
+		paramList.add(registClubId);
+		paramList.add(registUserId);
 
 
 		// SQLを実行し結果を取得
