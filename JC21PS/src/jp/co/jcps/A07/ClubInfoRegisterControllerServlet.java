@@ -46,7 +46,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 		// TODO:SQLを宣言
 		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ? ";
 
-
+		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ? ";
 		// TODO: SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(leaderClubId);
