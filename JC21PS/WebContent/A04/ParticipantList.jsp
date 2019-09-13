@@ -46,7 +46,7 @@
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<%  for(int i = 0; i < bean.getParticipantList().size(); i++){%>
+  		<%  for(int i = 0; i < bean.getParticipantList().size(); i++){ %>
   		<tr>
   			<td><%= bean.getParticipantList().get(i) %></td>
   		</tr>
