@@ -79,13 +79,15 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		//SQLを宣言
 		// TODO: SQL文を完成させなさい。
-		String sql = "INSERT INTO IGNORE trn_club_member(club_id,user_id) VALUES (?,?)";
+		String sql = "INSERT INTO  trn_club_member(club_id,user_id) VALUES (?,?)";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい
 		paramList.add(registClubId);
 		paramList.add(registUserId);
+		//paramList.add("C010");
+		//paramList.add("00000010");
 
 
 
@@ -106,13 +108,15 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 
 		//SQLを宣言
 		// TODO: SQL文を完成させなさい。
-		String sql = "DELETE FROM trn_join_request where club_id=?,user_id=?";
+		String sql = "DELETE FROM trn_join_request WHERE club_id = ? AND user_id = ?";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい
 		paramList.add(registClubId);
 		paramList.add(registUserId);
+		//paramList.add("C010");
+		//paramList.add("00000010");
 
 
 
