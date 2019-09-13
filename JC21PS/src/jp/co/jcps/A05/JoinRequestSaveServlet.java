@@ -56,6 +56,9 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		 * リクエストパラメータの取得のrequest.getParameter(【HTMLのname属性の値】)で取得可能
 		 * A04,ParticipantListControllerServlet.java 43行目を参照
 		 */
+		String userId = (String) request.getSession().getAttribute("userId");
+		paramList.add(request.getParameter("registClubDescription"));
+		paramList.add(userId);
 
 
 
