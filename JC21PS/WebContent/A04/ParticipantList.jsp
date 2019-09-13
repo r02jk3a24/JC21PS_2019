@@ -55,7 +55,7 @@
  			ヒント
  			Listの要素はget(【番号】)で取得することができる。
  			 --%>
-  			
+
   		<% } %>
   		</tbody>
   	</table>
@@ -64,4 +64,5 @@
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
 </body>
+
 </html>
