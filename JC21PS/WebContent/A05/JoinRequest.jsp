@@ -51,11 +51,11 @@
   			 --%>
 
 
-  			<td colspan="1"><%= bean.getClubIdList().get(i) %></td>
+  			<td colspan="1"><%= bean.getClubNameList().get(i) %></td>
   			<td colspan="1"><button type='submit' name='registClubId'  value='<%=  bean.getClubIdList().get(i) %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
   		</tr>
   		<tr>
-  			<td colspan ="2"><%=  bean.getClubIdList().get(i) %></td>
+  			<td colspan ="2"><%=  bean.getClubDescriptionList().get(i) %></td>
   		<%} %>
   		</tbody>
   	</table>
