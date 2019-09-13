@@ -57,9 +57,9 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		 * A04,ParticipantListControllerServlet.java 43行目を参照
 		 */
 		paramList.add(request.getParameter("user_id"));
-		String user_id = (String) request.getSession().getAttribute("user_id");
+		//String user_id = (String) request.getSession().getAttribute("user_id");
 		paramList.add(request.getParameter("club_id"));
-		String club_id = (String) request.getSession().getAttribute("club_id");
+		//String club_id = (String) request.getSession().getAttribute("club_id");
 
 
 
