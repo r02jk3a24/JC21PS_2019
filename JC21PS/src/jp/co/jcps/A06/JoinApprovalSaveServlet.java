@@ -51,7 +51,7 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		try {
 			if (approvalFlg) {
 				// 承認する場合
-				// TODO: 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさ
+				// TODO: 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい
 
 				saveClubMember(leaderClubId, registUserId);
 
