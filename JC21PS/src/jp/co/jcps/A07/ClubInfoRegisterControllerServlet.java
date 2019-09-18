@@ -65,8 +65,6 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 			// TODO; DBから情報を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 
-			ResultSet rs = db.executeSelectQuery(sql, paramList);
-
 			while (rs.next()) {
 				// TODO: beanにDBから取得した値をセット
 
