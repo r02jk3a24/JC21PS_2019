@@ -46,16 +46,16 @@
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<% for(int i = 0; i < messageBean.getMessageList().size(); i++){
-  			out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");  %>
+  		<% for(int i = 0; i < bean.getParticipantList().size(); i++){ %>
+  			<tr>
+  				<td><%= bean.getParticipantList().get(i) %><td>
+  			<tr>
   			<%--TODO
  			参加者名の一覧が表示されるように実装しなさい。
  			ヒント
  			Listの要素はget(【番号】)で取得することができる。
  			 --%>
-  			<tr>
- 				<td></td>
- 			<tr>
+
   		<% } %>
   		</tbody>
   	</table>
@@ -64,4 +64,5 @@
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
 </body>
+
 </html>
