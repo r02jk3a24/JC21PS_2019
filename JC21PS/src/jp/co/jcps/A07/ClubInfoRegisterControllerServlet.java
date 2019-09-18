@@ -50,6 +50,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 		List<String> paramList = new ArrayList<String>();
 
 		paramList.add(leaderClubId);
+
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
@@ -61,6 +62,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			while (rs.next()) {
 				// TODO: beanにDBから取得した値をセット
+
 				bean.setClubName(rs.getString("club_name"));
 				bean.setClubDescription(rs.getString("club_description"));
 
