@@ -63,6 +63,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		try {
 			// TODO; DBから情報を取得
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 
