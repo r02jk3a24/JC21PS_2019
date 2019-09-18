@@ -60,7 +60,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		paramList.add(userId);
 
 
-
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
