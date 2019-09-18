@@ -116,7 +116,7 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		paramList.add(registClubId);
 		paramList.add(registUserId);
 		//paramList.add("C010");
-		//paramList.add("00000010");
+		//paramList.add("00000010")
 
 
 

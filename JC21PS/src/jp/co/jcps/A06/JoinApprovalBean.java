@@ -12,7 +12,7 @@ public class JoinApprovalBean implements Serializable {
 	// 部活名
 	private String clubName;
 
-	// ユーザーIDリスト
+	// ユーザーIDリス
 	private List<String> userIdList;
 
 	// ユーザー名リスト
