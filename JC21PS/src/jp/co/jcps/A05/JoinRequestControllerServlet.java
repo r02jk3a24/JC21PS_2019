@@ -59,7 +59,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		 */
 
 		paramList.add(userId);
-
 		paramList.add(userId);
 
 
