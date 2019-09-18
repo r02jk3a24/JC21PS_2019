@@ -59,9 +59,8 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		 *  ログインユーザーの情報を使う。
 		 */
 
-		paramList.add((String) request.getSession().getAttribute("user_Id"));
-		paramList.add((String) request.getParameter("clubId"));
-
+		paramList.add(userId);
+		paramList.add(userId);
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
