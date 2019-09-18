@@ -46,7 +46,6 @@ public class JoinRequestSaveServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-
 		// TODO: データベースにデータを登録する為のSQL文を完成させなさい。
 
 		String sql = "INSERT INTO trn_join_request (user_id,club_id) VALUES (? ,?)";

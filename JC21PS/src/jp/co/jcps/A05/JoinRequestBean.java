@@ -83,7 +83,6 @@ public class JoinRequestBean implements Serializable {
 	public void setClubDescriptionList(List<String> clubDescriptionList) {
 		this.clubDescriptionList = clubDescriptionList;
 	}
-
 	/**
 	 * @param clubDescription 追加する clubDescription
 	 */

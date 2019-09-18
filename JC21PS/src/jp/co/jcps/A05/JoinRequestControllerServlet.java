@@ -77,7 +77,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		JoinRequestBean bean = new JoinRequestBean();
 
 
-
 		try {
 			// SQLを実行し結果を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);

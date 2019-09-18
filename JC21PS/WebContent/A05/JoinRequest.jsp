@@ -29,6 +29,7 @@
 		out.println("<p>" + messageBean.getMessageList().get(i) + "</p>");
 	}
   %>
+
   <form action="/JC21PS/JoinRequestSave" method="POST">
   	<div style='width:90%; margin:auto'>
   	<table class='table table-bordered'>
