@@ -14,9 +14,11 @@ import jp.co.jcps.Bean.MessageBean;
 import jp.co.jcps.Common.CommonCheck;
 import jp.co.jcps.Common.DBConnection;
 
+
 /**
  * 部員登録申請画面の登録処理
  */
+
 @WebServlet("/JoinRequestSave")
 public class JoinRequestSaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +33,7 @@ public class JoinRequestSaveServlet extends HttpServlet {
 	/**
 	 * POSTでリクエストされた場合
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 共通チェック
@@ -38,12 +41,16 @@ public class JoinRequestSaveServlet extends HttpServlet {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
+
 		//リクエストのエンコードを指定
+
 		request.setCharacterEncoding("UTF-8");
 
 
 		// TODO: データベースにデータを登録する為のSQL文を完成させなさい。
-		String sql = "INSERT INTO";
+
+		String sql = "INSERT INTO trn_join_request (user_id,club_id) VALUES (? ,?)";
+
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -56,16 +63,15 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		 * リクエストパラメータの取得のrequest.getParameter(【HTMLのname属性の値】)で取得可能
 		 * A04,ParticipantListControllerServlet.java 43行目を参照
 		 */
-		String userId = (String) request.getSession().getAttribute("userId");
-		paramList.add(request.getParameter("registClubDescription"));
-		paramList.add(userId);
 
 		paramList.add((String) request.getSession().getAttribute("userId"));
 		paramList.add((String) request.getParameter("registClubId"));
 
 
 		// SQLを実行しデータを登録
+
 		DBConnection db = new DBConnection();
+
 		try {
 			db.executeInsertUpdateQuery(sql, paramList);
 		} catch (Exception e) {
@@ -73,11 +79,15 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		}
 
 		// msgに登録完了メッセージをセット
+
 		MessageBean msg = new MessageBean();
 		msg.addMessageList("部員登録申請をしました。");
 		request.setAttribute("messageBean", msg);
 
+
 		// TOP画面の呼び出し
 		request.getRequestDispatcher("/TopController").forward(request, response);
+
 	}
+
 }
