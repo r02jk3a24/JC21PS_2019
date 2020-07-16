@@ -43,7 +43,7 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		// リクエストから情報を取得する
 		boolean approvalFlg = request.getParameter("approvalFlg").equals("true");
 		// TODO: リクエストから承認・否認するユーザーのユーザーIDを取得しなさい
-		String registUserId = ;
+		String registUserId = request.getParameter("user_id");
 
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
@@ -52,7 +52,7 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 			if (approvalFlg) {
 				// 承認する場合
 				// TODO: 部員登録申請を承認する場合のみ実行する処理（メソッド）を呼び出しなさい。
-
+				request.getRequestDispatcher("/").forward(request, response);
 
 			}
 			//TODO: 部員登録申請を承認する場合および拒否する場合どちらも実行する処理（メソッド）を呼び出しなさい。
