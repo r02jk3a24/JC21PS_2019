@@ -44,9 +44,12 @@ public class JoinRequestSaveServlet extends HttpServlet {
 
 		// TODO: データベースにデータを登録する為のSQL文を完成させなさい。
 		String sql = "INSERT INTO";
+		String userId = (String) request.getSession().getAttribute("userId");
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
+		paramList.add("userId");
+
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
 		 * ヒント①
 		 * user_idはセッション情報から取得する。
