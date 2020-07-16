@@ -3,7 +3,6 @@
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
 <%--TODO beanの読み込み --%>
 <jsp:useBean id="bean" class="jp.co.jcps.A07.ClubInfoRegisterBean" scope="request" />
-
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
