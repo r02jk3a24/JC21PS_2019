@@ -46,7 +46,7 @@
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<%  for() {  %>
+  		<%  for(int i = 0; i <bean.getParthicipan) {  %>
   			<%--TODO
  			参加者名の一覧が表示されるように実装しなさい。
  			ヒント

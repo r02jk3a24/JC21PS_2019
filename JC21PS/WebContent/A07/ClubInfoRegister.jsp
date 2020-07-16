@@ -46,6 +46,7 @@
   		</tbody>
   	</table>
   	<div align="center">
+  	paramList.add(leaderClubId);
   	<input type='submit' value='登録' onclick='return confirm("登録しますか？");' class="btn btn-primary"/>
   	<input type='button' value='戻る' onclick="location.href='/JC21PS/TopController'" class="btn btn-primary"/>
   	</div>
