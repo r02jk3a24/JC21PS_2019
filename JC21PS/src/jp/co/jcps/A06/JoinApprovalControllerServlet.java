@@ -47,6 +47,7 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
+		paramList.add(leaderClubId);
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
 		 * ヒント
 		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
