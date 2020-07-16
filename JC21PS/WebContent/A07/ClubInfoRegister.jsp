@@ -15,7 +15,7 @@
 <title>部活動管理システム</title>
 <style type="text/css">
 	th {
-		background-color: #add8e6;
+		background-color: add8e6;
 	}
 </style>
 </head>
