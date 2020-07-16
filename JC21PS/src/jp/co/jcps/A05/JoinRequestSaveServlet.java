@@ -42,11 +42,19 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 
+		String userId = (String) request.getSession().getAttribute("userId");
+		String clubId = request.getParameter("viewport");
+
+
 		// TODO: データベースにデータを登録する為のSQL文を完成させなさい。
-		String sql = "INSERT INTO";
+		String sql = "INSERT INTO trn_join_request"
+				+ "VALUES (''?'',''?'')";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
+		paramList.add(userId);
+		paramList.add(clubId);
+
 		/* TODO: SQLに埋め込む値をparamListに設定しなさい。
 		 * ヒント①
 		 * user_idはセッション情報から取得する。
