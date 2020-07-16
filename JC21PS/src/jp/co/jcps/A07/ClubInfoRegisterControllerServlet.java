@@ -41,10 +41,11 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		// TODO: セッション（ログインユーザーの情報を保持している）からログインユーザーの部長を務める部活の部活IDを取得する。
+
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 		// TODO:SQLを宣言
-
 		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ? ";
+
 		// TODO: SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 
@@ -55,7 +56,6 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 
 		// 部活情報登録画面のBeanを初期化
 		ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
-
 		try {
 			// TODO; DBから情報を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
@@ -63,8 +63,6 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 				// TODO: beanにDBから取得した値をセット
 				bean.setClubName(rs.getString("club_name"));
 				bean.setClubDescription(rs.getString("club_description"));
-
-
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
