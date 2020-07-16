@@ -49,7 +49,7 @@ public class ParticipantListControllerServlet extends HttpServlet {
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値を設定しなさい。
-		
+
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
