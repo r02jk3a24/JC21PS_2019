@@ -59,6 +59,7 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 
 
 
+
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
 

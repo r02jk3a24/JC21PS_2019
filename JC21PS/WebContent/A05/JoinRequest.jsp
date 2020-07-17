@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="jp.co.jcps.A05.JoinRequestBean"%>
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
 <jsp:useBean id="bean" class="jp.co.jcps.A05.JoinRequestBean" scope="request" />
+<jsp:useBean id="bean" class="jp.co.jcps.A05.JoinRequestBean" scope="request" />
 
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,7 +50,11 @@
   			ヒント②
   			<button>タグのvalueオプションはボタンを押した際に登録処理に渡すリクエストパラメータの値を表す。
   			 --%>
-  			<td colspan="1"><%= %></td>
+
+  			 <%
+  			 // bean.getclubNameList().get(ナントカ)　みたいな感じのやつ入れる↓
+  			 %>
+  			<td colspan ="1"><%=  %></td>
   			<td colspan="1"><button type='submit' name='registClubId'  value='<%=  %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
   		</tr>
   		<tr>
