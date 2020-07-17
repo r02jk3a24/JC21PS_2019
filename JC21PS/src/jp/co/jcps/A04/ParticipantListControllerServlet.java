@@ -63,6 +63,7 @@ public class ParticipantListControllerServlet extends HttpServlet {
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// beanに画面に出力する情報をセット
 			while (rs.next()) {
+
 				/* TODO: データベースから取得した情報をbeanにセットしなさい。
 				ヒント①
 				ParticipantListBeanは活動名と参加者リストのプロパティがあり、
