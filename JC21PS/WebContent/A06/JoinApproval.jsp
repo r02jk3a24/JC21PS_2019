@@ -31,6 +31,8 @@
   %>
 
 
+
+
   <form name="form" action="/JC21PS/JoinApprovalSave" method="POST">
   <div style="margin:auto; width:60%">
   <h2><%= bean.getClubName() %></h2>
