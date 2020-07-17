@@ -40,7 +40,7 @@ public class ClubInfoRegisterSaveServlet extends HttpServlet {
 			request.getRequestDispatcher("/Login").forward(request, response);
 		}
 
-		//リクエストのエンコードを指定
+		//リクエストのエンコードを指定		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
 		request.setCharacterEncoding("UTF-8");
 
 		// 入力値チェック

@@ -43,7 +43,7 @@ public class JoinRequestSaveServlet extends HttpServlet {
 
 
 		// TODO: データベースにデータを登録する為のSQL文を完成させなさい。
-		String sql = "INSERT INTO trn_club_menber SELECT  FROM trn_join_request";
+		String sql = "INSERT INTO trn_join_request values (user_id,club_id)";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
@@ -51,16 +51,19 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		 * ヒント①
 		 * user_idはセッション情報から取得する。
 		 * 取得の仕方はJoinRequestControllerServlet.java 43行目を参照
-		
+
 		 *  ヒント
 		 *  セッションには「userId」という名前でログインユーザーIDが格納されている。
-		 *  
+		 *
 		 * ヒント②
 		 * 登録する部活IDはリクエストパラメータとしてHttpServletRequestに格納されている。
 		 * リクエストパラメータの取得のrequest.getParameter(【HTMLのname属性の値】)で取得可能
 		 * A04,ParticipantListControllerServlet.java 43行目を参照
 		 */
-
+		String userId = (String) request.getSession().getAttribute("userId");
+		paramList.add(userId);
+		String leaderClubId = (String) request.getRequest().getAttribute("club_id");
+		paramList.add(leaderClubId);
 
 
 		// SQLを実行しデータを登録
