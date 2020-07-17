@@ -81,8 +81,6 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい。
 
-
-
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
 		db.executeInsertUpdateQuery(sql, paramList);
