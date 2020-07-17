@@ -46,15 +46,18 @@
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<%  for(int i = 0; i > bean.getuser_nameList().size(); i++) {  %>
+  		<%  for(int i = 0; i > bean.getParticipantList().size(); i++) {  %>
   			<%--TODO
  			参加者名の一覧が表示されるように実装しなさい。
  			ヒント
  			Listの要素はget(【番号】)で取得することができる。
  			 --%>
   			<tr>
- 				<td></td>
+ 				<td>参加者名</td>
+ 			</tr>
  			<tr>
+ 				<td><%= bean.getActivityName() %></td>
+ 			</tr>
   		<% } %>
   		</tbody>
   	</table>
