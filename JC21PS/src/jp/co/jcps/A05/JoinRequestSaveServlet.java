@@ -51,6 +51,10 @@ public class JoinRequestSaveServlet extends HttpServlet {
 		 * ヒント①
 		 * user_idはセッション情報から取得する。
 		 * 取得の仕方はJoinRequestControllerServlet.java 43行目を参照
+
+		 *  ヒント
+		 *  セッションには「userId」という名前でログインユーザーIDが格納されている。
+		 *
 		 * ヒント②
 		 * 登録する部活IDはリクエストパラメータとしてHttpServletRequestに格納されている。
 		 * リクエストパラメータの取得のrequest.getParameter(【HTMLのname属性の値】)で取得可能

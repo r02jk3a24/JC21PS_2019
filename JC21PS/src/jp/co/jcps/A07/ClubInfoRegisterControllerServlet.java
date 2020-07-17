@@ -46,6 +46,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ? ";
 		// TODO: SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
+		paramList.add(leaderClubId);
 
 		paramList.add(leaderClubId);
 		// DB接続を初期化
@@ -55,6 +56,7 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 		ClubInfoRegisterBean bean = new ClubInfoRegisterBean();
 
 		try {
+			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			// TODO; DBから情報を取得
 			ResultSet rs = db.executeSelectQuery(sql, paramList);
 			while (rs.next()) {
