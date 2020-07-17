@@ -43,7 +43,7 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		// リクエストから情報を取得する
 		boolean approvalFlg = request.getParameter("approvalFlg").equals("true");
 		// TODO: リクエストから承認・否認するユーザーのユーザーIDを取得しなさい
-		String registUserId = request.getParameter("user_ID");
+		String registUserId = (String)request.getParameter("user_ID");
 
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
@@ -79,8 +79,8 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい。
-
-
+			paramList.add(registClubId);
+			paramList.add(registUserId);
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
@@ -102,7 +102,8 @@ public class JoinApprovalSaveServlet extends HttpServlet {
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値をparamListに設定しなさい。
-
+		paramList.add(registClubId);
+		paramList.add(registUserId);
 
 		// SQLを実行し結果を取得
 		DBConnection db = new DBConnection();
