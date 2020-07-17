@@ -31,7 +31,7 @@
   %>
 
 
-
+//
 
   <form name="form" action="/JC21PS/JoinApprovalSave" method="POST">
   <div style="margin:auto; width:60%">
