@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="jp.co.jcps.A05.JoinRequestBean"%>
 <jsp:useBean id="messageBean" class="jp.co.jcps.Bean.MessageBean" scope="request" />
 <jsp:useBean id="bean" class="jp.co.jcps.A05.JoinRequestBean" scope="request" />
-<jsp:useBean id="bean" class="jp.co.jcps.A05.JoinRequestBean" scope="request" />
 
 <link rel="stylesheet" type="text/css" href="/JC21PS/css/common.css" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,11 +53,11 @@
   			 <%
   			 // bean.getclubNameList().get(ナントカ)　みたいな感じのやつ入れる↓
   			 %>
-  			<td colspan ="1"><%=  %></td>
-  			<td colspan="1"><button type='submit' name='registClubId'  value='<%=  %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
+  			<td colspan ="1"><%= bean.getClubIdList().get( i ) %></td>
+  			<td colspan="1"><button type='submit' name='registClubId'  value='<%= bean.getClubIdList().get( i ) %>' onclick="return confirm('申請しますか？')">部員登録申請</button></td>
   		</tr>
   		<tr>
-  			<td colspan ="2"><%=  %></td>
+  			<td colspan ="2"><%= bean.getClubIdList().get( i ) %></td>
   		<%} %>
   		</tbody>
   	</table>
