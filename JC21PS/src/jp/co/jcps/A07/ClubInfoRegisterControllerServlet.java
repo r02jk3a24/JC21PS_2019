@@ -42,13 +42,13 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 		// セッションからログイン中のユーザーの部長クラブIDを取得する
 		// TODO: セッション（ログインユーザーの情報を保持している）からログインユーザーの部長を務める部活の部活IDを取得する。
 		String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
-
 		// TODO:SQLを宣言
-
 		String sql = "SELECT club_name, club_description FROM mst_club WHERE club_id = ? ";
+
 		// TODO: SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		paramList.add(leaderClubId);
+
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();

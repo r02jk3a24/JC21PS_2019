@@ -54,6 +54,7 @@
   		</tr>
   		<tr>
   			<td colspan ="2"><%= bean.getClubDescriptionList().get(i) %></td>
+
   		<%} %>
   		</tbody>
   	</table>
