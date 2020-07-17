@@ -44,6 +44,7 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		 *  ヒント
 		 *  セッションには「userId」という名前でログインユーザーIDが格納されている。
 		 */
+
 		String userId = (String) request.getSession().getAttribute("userId");
 
 		// SQLを宣言
@@ -62,10 +63,13 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		 *  ログインユーザーの情報を使う。
 		 */
 
+		paramList.add("user_id");
+		paramList.add("user_name");
 
 
 
 		// DB接続を初期化
+
 		DBConnection db = new DBConnection();
 
 		// 部員登録申請画面に表示するbeanを初期化
