@@ -51,6 +51,12 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		 * ヒント
 		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
 		 */
+		
+
+		ArrayList.class(new String("user_id"));
+		ArrayList.class(new String("user_name"));]
+				System.out.print(1);
+
 
 
 		// DB接続を初期化
