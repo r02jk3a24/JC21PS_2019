@@ -61,7 +61,6 @@ public class JoinRequestControllerServlet extends HttpServlet {
 		paramList.add(request.getParameter("registmst_club"));
 		paramList.add(userId);
 
-
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
 
