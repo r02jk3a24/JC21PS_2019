@@ -16,7 +16,7 @@
 	th {
 		background-color: #add8e6;
 	}
-//??
+
 </style>
 </head>
 <body>
@@ -47,7 +47,7 @@
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<%  for() {  %>
+  		<%  for (int i = 0; i < bean.getUserIdList().size(); i++)){ %>
   			<%--TODO
  			参加者名の一覧が表示されるように実装しなさい。
  			ヒント
