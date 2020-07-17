@@ -41,10 +41,10 @@ public class ParticipantListControllerServlet extends HttpServlet {
 
 		// リクエストパラメーターから活動IDを取得する
 		// TODO: リクエストから遷移元でクリックされた活動IDを取得できるように44行目を変更しなさい。
-		String activityId = "";
+		String activityId = (String) request.getSession().getAttribute("activityid");
 
 		// TODO: データベースから必要な情報を取得するためのSQL文を完成させなさい。
-		String sql = "SELECT  ";
+		String sql = "SELECT activity_id,user_id FROM trn_activity INNER JOIN trn_club_member ON trn_activity.club_id = trn_club_member.club_id  ";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();

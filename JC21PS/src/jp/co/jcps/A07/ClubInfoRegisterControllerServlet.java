@@ -84,6 +84,6 @@ public class ClubInfoRegisterControllerServlet extends HttpServlet {
 		request.getRequestDispatcher("A07/ClubInfoRegister.jsp").forward(request, response);
 	}
 
-	String leaderClubId = (String) request.getSession().getAttribute("leaderClubId");
+	String leaderClubId = (String)request.getSession().getAttribute("leaderClubId");
 
 }
