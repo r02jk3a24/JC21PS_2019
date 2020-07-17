@@ -46,14 +46,14 @@
   		ヒント
   		size()メソッドでListの要素数を取得することができる
   		 --%>
-  		<%  for() {  %>
+  		<%  for (int c = 0; c < bean.getParticipantList().size(); c++ ) {  %>
   			<%--TODO
  			参加者名の一覧が表示されるように実装しなさい。
  			ヒント
  			Listの要素はget(【番号】)で取得することができる。
  			 --%>
   			<tr>
- 				<td></td>
+ 				<td>c.ParticiparntList()</td>
  			<tr>
   		<% } %>
   		</tbody>

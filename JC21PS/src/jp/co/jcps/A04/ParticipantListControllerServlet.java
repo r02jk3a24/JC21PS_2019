@@ -44,12 +44,12 @@ public class ParticipantListControllerServlet extends HttpServlet {
 		String activityId = "";
 
 		// TODO: データベースから必要な情報を取得するためのSQL文を完成させなさい。
-		String sql = "SELECT ";
+		String sql = "SELECT  ";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値を設定しなさい。
-		
+
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
